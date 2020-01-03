@@ -1,9 +1,9 @@
 var db = require("../models");
 var bcrypt = require("bcryptjs");
-var nodemailer = require("nodemailer");
-var mailGun = require("nodemailer-mailgun-transport");
+var mailgun = require("mailgun-js");
 var saltRounds = 10;
 require("dotenv").config();
+
 module.exports = function(app) {
   // Get all examples
   app.get("/examples", function(req, res) {
@@ -11,7 +11,7 @@ module.exports = function(app) {
       res.json(dbExamples);
     });
   });
-  app.post("/api/login/", function(req, res) {
+  app.post("/login", function(req, res) {
     console.log(req.body);
     db.Users.findOne({
       where: {
@@ -19,60 +19,56 @@ module.exports = function(app) {
       }
       // eslint-disable-next-line no-unused-vars
     }).then(function(dbUsers) {
-      if (dbUsers) { //if account exists
-        bcrypt.compare(req.body.password, dbUsers.password, function( //compare hashed password
+      if (dbUsers) {
+        //if account exists
+        bcrypt.compare(req.body.password, dbUsers.password, function(
+          //compare hashed password
           err,
           response
         ) {
           if (err) {
             res.status(403);
           }
-          if (response) { //if passwords match
+          if (response) {
+            //if passwords match
             res.json(dbUsers);
           } else {
             // response is OutgoingMessage object that server response http request
+            var DOMAIN = process.env.DOMAIN;
+            var mg = mailgun({ apiKey: process.env.API_KEY, domain: DOMAIN });
+            var data = {
+              from: "SimpleFlow <simpleflow2020@gmail.com>",
+              to: "grayson.mcmurry23@gmail.com",
+              subject: "Login Attempt",
+              template: "login"
+            };
+            mg.messages().send(data, function(error, body) {
+              console.log(body);
+            });
             return res.json({
               success: false,
               message: "passwords do not match"
             });
           }
         });
-      } else { //if account does not exist
+      } else {
+        //if account does not exist
         return res.json({ success: false, message: "no account found" });
       }
     });
     // eslint-disable-next-line no-undef
   });
   app.post("/create/user", function(req, res) {
-    var output = `
-    <h1>Welcome to Simple Flow</h1>
-    <p>Thank you for signing up to Simple Flow, a developers workspace created by developers!</p>
-    <p>Please Click on the link below to login and start your new project!</p>
-    <button style="width: 50px; height: 50px;"><link href="http://simpleflow.com">Click Here</button>
-  `;
-    var auth = {
-      auth: {
-        api_key: process.env.API_KEY,
-        domain: process.env.DOMAIN
-      }
+    var DOMAIN = process.env.DOMAIN;
+    var mg = mailgun({ apiKey: process.env.API_KEY, domain: DOMAIN });
+    var data = {
+      from: "SimpleFlow <simpleflow2020@gmail.com>",
+      to: "grayson.mcmurry23@gmail.com",
+      subject: "Welcome",
+      template: "signuptemplate"
     };
-    // create reusable transporter object using the default SMTP transport
-    let transporter = nodemailer.createTransport(mailGun(auth));
-    let mailOptions = {
-      from: '"Simple Flow" <simpleflow2020@gmail.com>', // sender address
-      to: req.body.email, // list of receivers
-      subject: "Simple Flow", // Subject line
-      // text: output // plain text body
-      html: output // html body
-    };
-    // send mail with defined transport object
-    transporter.sendMail(mailOptions, (error, info) => {
-      if (error) {
-        return console.log(error);
-      }
-      console.log(info);
-      console.log("Message sent: %s", info.messageId);
-      console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
+    mg.messages().send(data, function(error, body) {
+      console.log(body);
     });
     var myPlaintextPassword = req.body.password;
     bcrypt.genSalt(saltRounds, function(err, salt) {
