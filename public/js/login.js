@@ -16,6 +16,10 @@ $(".btn-login").on("click", function(event) {
     method: "POST",
     data: user
   }).then(function(response) {
-    console.log(response);
+    // console.log(response);
+    window.localStorage.setItem("Bearer", response.token);
+    // var token = window.localStorage.getItem("Bearer");
+    console.log(response.token);
+
   });
 });
