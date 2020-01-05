@@ -17,6 +17,7 @@
     "express": "^4.17.0",
     "express-handlebars": "^3.1.0",
     "jsonwebtoken": "^8.5.1",
+    "mailgun-js": "^0.22.0",
     "mysql2": "^1.6.5",
     "nodemailer": "^6.4.2",
     "nodemailer-mailgun-transport": "^2.0.0",
