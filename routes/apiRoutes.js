@@ -2,6 +2,7 @@ var db = require("../models");
 var bcrypt = require("bcryptjs");
 var nodemailer = require("nodemailer");
 var mailGun = require("nodemailer-mailgun-transport");
+var jwt = require('jsonwebtoken');
 var saltRounds = 10;
 require("dotenv").config();
 module.exports = function(app) {
@@ -28,7 +29,11 @@ module.exports = function(app) {
             res.status(403);
           }
           if (response) { //if passwords match
-            res.json(dbUsers);
+            // res.json(dbUsers);
+            var user = dbUsers.dataValues.user_id;
+            jwt.sign({user: user}, 'secretkey', {expiresIn: '30s'}/*sets token to expire in 30 seconds*/, function(err, token){
+              res.json({token});
+          });    
           } else {
             // response is OutgoingMessage object that server response http request
             return res.json({
@@ -36,8 +41,9 @@ module.exports = function(app) {
               message: "passwords do not match"
             });
           }
-        });
-      } else { //if account does not exist
+        });  
+      }
+         else { //if account does not exist
         return res.json({ success: false, message: "no account found" });
       }
     });
