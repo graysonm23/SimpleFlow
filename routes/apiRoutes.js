@@ -16,7 +16,7 @@ module.exports = function(app) {
       res.json(dbExamples);
     });
   });
-  app.post("/login", function(req, res) {
+  app.post("/api/login", function(req, res) {
     console.log(req.body);
     db.Users.findOne({
       where: {
