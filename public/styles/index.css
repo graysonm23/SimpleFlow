@@ -1,0 +1,28 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Roboto", sans-serif;
+  /* background-color: rgb(255, 255, 255); */
+}
+#left-content {
+  height: 100vh;
+  border-right: 1px solid rgb(201, 201, 201);
+  background-color: rgb(245, 245, 245);
+}
+#logo {
+  height: 10vh;
+  /* border: 1px solid seagreen; */
+  background-image: url(../images/logo.png);
+  background-repeat: no-repeat;
+}
+
+#right-content {
+  height: 10vh;
+  /* border: 1px solid saddlebrown; */
+  padding: 0;
+}
+
+.spaces {
+  font-size: 12px;
+  color: rgb(138, 138, 138);
+}

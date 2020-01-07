@@ -30,6 +30,13 @@ module.exports = function(app) {
     res.render("signup");
   });
 
+  app.get("/notifications", function(req, res) {
+    res.render("notifications");
+  });
+  app.get("/inbox", function(req, res) {
+    res.render("inbox");
+  });
+
   // Render 404 page for any unmatched routes
   app.get("*", function(req, res) {
     res.render("404");
