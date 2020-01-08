@@ -12,7 +12,7 @@ $(".btn-login").on("click", function(event) {
   };
   console.log(user.email, user.password);
   $.ajax({
-    url: "/login/user",
+    url: "/login",
     method: "POST",
     data: user
   }).then(function(response) {
@@ -34,7 +34,7 @@ $(".btn-signup").on("click", function(event) {
   };
   // console.log(user);
   $.ajax({
-    url: "/create/user",
+    url: "/profile",
     method: "POST",
     data: user
   }).then(function(response) {
@@ -45,3 +45,4 @@ $(".btn-signup").on("click", function(event) {
     }
   });
 });
+console.log(window.localStorage.getItem("Bearer"));
