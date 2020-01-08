@@ -4,7 +4,7 @@ var bcrypt = require("bcryptjs");
 var nodemailer = require("nodemailer");
 // eslint-disable-next-line no-unused-vars
 var mailGun = require("nodemailer-mailgun-transport");
-var jwt = require('jsonwebtoken');
+var jwt = require("jsonwebtoken");
 var mailgun = require("mailgun-js");
 var saltRounds = 10;
 require("dotenv").config();
@@ -16,7 +16,14 @@ module.exports = function(app) {
       res.json(dbExamples);
     });
   });
-  app.post("/api/login", function(req, res) {
+  // app.get("/profile", function(req, res) {
+  //   db.Users.findOne({
+  //     where: {
+  //       email: req.body.email
+  //     }
+  //   });
+  // });
+  app.post("/login", function(req, res) {
     console.log(req.body);
     db.Users.findOne({
       where: {
@@ -34,19 +41,47 @@ module.exports = function(app) {
           if (err) {
             res.status(403);
           }
-          if (response) { //if passwords match
+          if (response) {
+            //if passwords match
             // res.json(dbUsers);
             var user = dbUsers.dataValues.user_id;
-            jwt.sign({user: user}, 'secretkey', {expiresIn: '30s'}/*sets token to expire in 30 seconds*/, function(err, token){
-              res.json({token});
-          });    
+            jwt.sign(
+              { user: user },
+              "secretkey",
+              { expiresIn: "10 days" } /*sets token to expire in 30 seconds*/,
+              function(err, token) {
+                console.log(token);
+                db.Users.update(
+                  { token: token },
+                  {
+                    where: { email: req.body.email },
+                    returning: true,
+                    plain: true
+                  }
+                )
+                  .then(function(dbresponse) {
+                    if (dbresponse[1] === 1) {
+                      console.log("Successfully updated token");
+                    } else {
+                      console.log("mom im here");
+                      console.log("Unsuccessfully updated token");
+                    }
+                    res.json({ token });
+                  })
+                  .catch(function(err) {
+                    console.log(err);
+                  });
+              }
+            );
+
+            // res.render("userprofile", { msg: "Email has been sent" });
           } else {
             // response is OutgoingMessage object that server response http request
             var DOMAIN = process.env.DOMAIN;
             var mg = mailgun({ apiKey: process.env.API_KEY, domain: DOMAIN });
             var data = {
               from: "SimpleFlow <simpleflow2020@gmail.com>",
-              to: "grayson.mcmurry23@gmail.com",
+              to: req.body.email,
               subject: "Login Attempt",
               template: "login"
             };
@@ -58,20 +93,21 @@ module.exports = function(app) {
               message: "passwords do not match"
             });
           }
-        });  
-      }
-         else { //if account does not exist
+        });
+      } else {
+        //if account does not exist
         return res.json({ success: false, message: "no account found" });
       }
     });
     // eslint-disable-next-line no-undef
   });
-  app.post("/create/user", function(req, res) {
+
+  app.post("/profile", function(req, res) {
     var DOMAIN = process.env.DOMAIN;
     var mg = mailgun({ apiKey: process.env.API_KEY, domain: DOMAIN });
     var data = {
       from: "SimpleFlow <simpleflow2020@gmail.com>",
-      to: "grayson.mcmurry23@gmail.com",
+      to: req.body.email,
       subject: "Welcome",
       template: "signuptemplate"
     };
@@ -85,6 +121,7 @@ module.exports = function(app) {
           throw err;
         }
         db.Users.create({
+          name: req.body.name,
           email: req.body.email,
           password: hash
         }).then(function(dbUsers) {
