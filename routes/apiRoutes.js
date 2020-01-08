@@ -138,6 +138,7 @@ module.exports = function(app) {
       res.json(dbExample);
     });
   });
+
   // Delete an example by id
   app.delete("/examples/:id", function(req, res) {
     db.Users.destroy({ where: { id: req.params.id } }).then(function(
