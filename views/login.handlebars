@@ -6,8 +6,11 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-md-9 col-lg-8 mx-auto">
+
                             <h3 class="login-heading mb-4">Welcome back!</h3>
-                            <form method="GET" action="login">
+                            {{msg}}
+                            {{profilepage}}
+                            <form method="GET" action="login" autocomplete="on">
                                 <div class="form-label-group">
                                     <input type="email" id="inputEmail" class="form-control" placeholder="Email address"
                                         required autofocus>
@@ -28,7 +31,7 @@
                                     class="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2"
                                     type="submit">Sign in</button>
                                 <div class="text-center">
-                                    <a class="small" href="#">Click Here to Sign Up!</a></div>
+                                    <a class="small" href="/signup">Click Here to Sign Up!</a></div>
                             </form>
                         </div>
                     </div>

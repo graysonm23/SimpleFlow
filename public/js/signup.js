@@ -12,7 +12,7 @@ $(".btn-login").on("click", function(event) {
   };
   console.log(user.email, user.password);
   $.ajax({
-    url: "/login/user",
+    url: "/login",
     method: "POST",
     data: user
   }).then(function(response) {
@@ -25,6 +25,9 @@ $(".btn-signup").on("click", function(event) {
   // eslint-disable-next-line no-console
   console.log("signup has been clicked");
   var user = {
+    name: $("#inputName")
+      .val()
+      .trim(),
     email: $("#inputEmail")
       .val()
       .trim(),
@@ -34,7 +37,7 @@ $(".btn-signup").on("click", function(event) {
   };
   // console.log(user);
   $.ajax({
-    url: "/create/user",
+    url: "/profile",
     method: "POST",
     data: user
   }).then(function(response) {
@@ -45,3 +48,4 @@ $(".btn-signup").on("click", function(event) {
     }
   });
 });
+console.log(window.localStorage.getItem("Bearer"));

@@ -9,7 +9,13 @@
                         <div class="col-md-9 col-lg-8 mx-auto">
                             <h3 class="login-heading mb-4">Sign up really quick!</h3>
                             <div class="msg"></div>
-                            <form method="POST" action="create/user">
+                            <form method="POST" action="profile" autocomplete="on">
+                                <div class="form-label-group">
+                                    <input type="text" id="inputName" name="name" class="form-control"
+                                        placeholder="First and Last Name" required>
+                                    <label for="inputName">First and Last Name</label>
+                                </div>
+
                                 <div class="form-label-group">
                                     <input type="email" id="inputEmail" name="email" class="form-control"
                                         placeholder="Email address" required autofocus>
@@ -30,7 +36,8 @@
                                     class="btn btn-lg btn-primary btn-block btn-signup text-uppercase font-weight-bold mb-2"
                                     type="submit">Sign up</button>
                                 <div class="text-center">
-                                    <a class="small" href="#">Already have account? Sign in!</a></div>
+                                    <a class="small" href="/login">Already have account? Sign in!</a>
+                                </div>
                             </form>
                         </div>
                     </div>
