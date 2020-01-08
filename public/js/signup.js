@@ -25,6 +25,9 @@ $(".btn-signup").on("click", function(event) {
   // eslint-disable-next-line no-console
   console.log("signup has been clicked");
   var user = {
+    name: $("#inputName")
+      .val()
+      .trim(),
     email: $("#inputEmail")
       .val()
       .trim(),
