@@ -8,12 +8,12 @@
                         <div class="col-md-9 col-lg-8 mx-auto">
 
                             <h3 class="login-heading mb-4">Welcome back!</h3>
-                            {{msg}}
-                            {{profilepage}}
+                            {{!-- {{> loginerror }} --}}
+                            <div class="errMsg"></div>
                             <form method="GET" action="login" autocomplete="on">
                                 <div class="form-label-group">
                                     <input type="email" id="inputEmail" class="form-control" placeholder="Email address"
-                                        required autofocus>
+                                        required autofocus="autofocus">
                                     <label for="inputEmail">Email address</label>
                                 </div>
 

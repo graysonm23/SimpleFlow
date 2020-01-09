@@ -1,0 +1,57 @@
+{{!-- <div class="row">
+    <div class="col-md-12">
+        <form action="/reset/{{token}}/{{date}}" method="POST">
+            <legend>Reset Password</legend>
+            <div class="form-group">
+                <label for="password">New Password</label>
+                <input type="password" name="password" value="" placeholder="New password" autofocus="autofocus"
+                    class="form-control" />
+            </div>
+            <div class="form-group">
+                <label for="confirm">Confirm Password</label>
+                <input type="password" name="confirm" value="" placeholder="Confirm password" class="form-control" />
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Update Password</button>
+            </div>
+        </form>
+    </div>
+</div> --}}
+<div class="container-fluid">
+    <div class="row no-gutter">
+        <div class="d-none d-md-flex col-md-4 col-lg-6 bg-image"></div>
+        <div class="col-md-8 col-lg-6">
+            <div class="login d-flex align-items-center py-5">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-9 col-lg-8 mx-auto">
+
+                            <h3 class="login-heading mb-4">Forgot Password!</h3>
+                            <div class="newPassMsg"></div>
+                            <div style="margin-bottom: 20px;" class="resetMsg"></div>
+                            <form action="/reset/{{token}}/{{date}}" method="POST">
+                                <div class="form-label-group">
+                                    <input name="password" type="password" id="newPassword" class="form-control"
+                                        placeholder="New Password" required autofocus="autofocus">
+                                    <label for="newPassword">New Password</label>
+                                </div>
+                                <div class="form-label-group">
+                                    <input name="confirm" type="password" id="newPasswordConfirm" class="form-control"
+                                        placeholder="New Password" required>
+                                    <label for="confirmPassword">Confirm Password</label>
+                                </div>
+                                <button
+                                    class="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2"
+                                    type="submit">Reset</button>
+                                <div class="text-center">
+                                    <a class="small" href="/login">Click Here to Login!</a></div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="js/reset.js"></script>

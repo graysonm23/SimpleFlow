@@ -37,6 +37,16 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING,
       allowNull: false,
       defaultValue: " "
+    },
+    resetPasswordToken: {
+      type: DataTypes.STRING,
+      allowNull: true,
+      defaultValue: " "
+    },
+    resetPasswordExpires: {
+      type: DataTypes.STRING,
+      allowNull: true,
+      defaultValue: " "
     }
   });
   return Users;

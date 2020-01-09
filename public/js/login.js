@@ -1,6 +1,6 @@
+var loginResponseMessage;
 $(".btn-login").on("click", function(event) {
   event.preventDefault();
-  console.log("login has been clicked");
   var user = {
     email: $("#inputEmail")
       .val()
@@ -17,10 +17,29 @@ $(".btn-login").on("click", function(event) {
     method: "POST",
     data: user
   }).then(function(response) {
-    console.log(response);
     window.localStorage.setItem("Bearer", response.token);
+    loginResponseMessage = response.message;
+    console.log(response);
+    errorMsg();
+    window.location.pathname = "/profile";
     // var token = window.localStorage.getItem("Bearer");
     // console.log(response.token);
-    window.location.href = "/profile";
   });
 });
+
+function errorMsg() {
+  if (loginResponseMessage === "passwords do not match") {
+    $(".errMsg").addClass("alert-danger");
+    $(".errMsg").html(
+      "The account you are trying to access either does not exist or credentials entered are incorrect. Please try again"
+    );
+    return false;
+  }
+  if (loginResponseMessage === "no account found") {
+    $(".errMsg").addClass("alert-warning");
+    $(".errMsg").html(
+      "The account you are trying to access either does not exist or credentials entered are incorrect. Please try again"
+    );
+    return false;
+  }
+}
