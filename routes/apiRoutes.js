@@ -8,7 +8,6 @@ var mailGun = require("nodemailer-mailgun-transport");
 var jwt = require("jsonwebtoken");
 var mailgun = require("mailgun-js");
 var saltRounds = 10;
-var async = require("async");
 var crypto = require("crypto");
 require("dotenv").config();
 
@@ -161,7 +160,7 @@ module.exports = function(app) {
       res.json(dbExample);
     });
   });
-  app.post("/forgot", function(req, res, next) {
+  app.post("/forgot", function(req, res) {
     var resetExpiration = Date.now() + 3600000;
     var resetToken = crypto.randomBytes(20).toString("hex");
     db.Users.findOne({
@@ -226,7 +225,6 @@ module.exports = function(app) {
           .catch(function(err) {
             console.log(err);
           });
-      } else {
       }
     });
   });

@@ -1,5 +1,4 @@
 var token = window.localStorage.getItem("Bearer");
-var ajaxResponse;
 $.ajax({
   url: "/profile",
   method: "POST",
@@ -7,5 +6,4 @@ $.ajax({
 }).then(function(response) {
   // eslint-disable-next-line no-console
   console.log(response);
-  ajaxResponse = response;
 });

@@ -27,6 +27,7 @@ $(".btn-signup").on("click", function(event) {
     // eslint-disable-next-line no-console
     signupResponseStatus = response.status;
     console.log(response);
+    validationMsg();
   });
 });
 
