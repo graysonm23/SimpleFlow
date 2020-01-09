@@ -34,6 +34,10 @@ module.exports = function(app) {
     res.render("signup");
   });
 
+  app.get("/forgot", function(req, res) {
+    res.render("forgot");
+  });
+
   app.get("/notifications", function(req, res) {
     res.render("notifications");
   });
