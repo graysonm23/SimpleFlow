@@ -1,7 +1,7 @@
 <div class="container-fluid">
   <div class="row">
     {{> slidebar }}
-    <div id="right-content" class="col-lg-10 text-center align-items-center" style="border: 1px solid salmon;">
+    <div id="right-content" class="col-lg-10 text-center align-items-center">
       <nav class="navbar navbar-expand-lg navbar-light bg-light nav nav-tabs">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01"
           aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
@@ -26,30 +26,31 @@
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
           </form>
         </div>
-    </div>
-    <div class="navbar dragbox col-lg-10 d-flex justify-content-end" style="border: 1px solid salmon;">
-      <ul id="sortable1" class="col-lg-4 list-group droptrue d-flex" style="cursor:pointer;">
-        <li class="list-group-item active">CONCEPT<span class="badge badge-danger badge-pill">14</span></li>
-        <li class="list-group-item">Task1</li>
-        <li class="list-group-item">Task2</li>
-        <li class="list-group-item">Task3</li>
-      </ul>
-
-      <ul id="sortable2" class="col-lg-4 list-group dropfalse d-flex" style="cursor:pointer;">
-        <li class="list-group-item active">IN PROGRESS<span class="badge badge-danger badge-pill">2</span></li>
-        <li class="list-group-item">Task4</li>
-        <li class="list-group-item">Task5</li>
-        <li class="list-group-item">Task6</li>
-      </ul>
-      <ul id="sortable3" class="col-lg-4 list-group dropfalse d-flex" style="cursor:pointer;">
-        <li class="list-group-item active">UPDATE<span class="badge badge-danger badge-pill">5</span></li>
-        <li class="list-group-item">Task7</li>
-        <li class="list-group-item">Task8</li>
-        <li class="list-group-item">Task9</li>
-      </ul>
       </nav>
+      <div class="navbar dragbox col-lg-12 d-flex justify-content-end">
+        <ul id="sortable1" class="col-lg-4 list-group droptrue d-flex" style="cursor:pointer;">
+          <li class="list-group-item active">CONCEPT<span class="badge badge-danger badge-pill">14</span></li>
+          <li class="list-group-item">Task1</li>
+          <li class="list-group-item">Task2</li>
+          <li class="list-group-item">Task3</li>
+        </ul>
+
+        <ul id="sortable2" class="col-lg-4 list-group dropfalse d-flex" style="cursor:pointer;">
+          <li class="list-group-item active">IN PROGRESS<span class="badge badge-danger badge-pill">2</span></li>
+          <li class="list-group-item">Task4</li>
+          <li class="list-group-item">Task5</li>
+          <li class="list-group-item">Task6</li>
+        </ul>
+        <ul id="sortable3" class="col-lg-4 list-group dropfalse d-flex" style="cursor:pointer;">
+          <li class="list-group-item active">UPDATE<span class="badge badge-danger badge-pill">5</span></li>
+          <li class="list-group-item">Task7</li>
+          <li class="list-group-item">Task8</li>
+          <li class="list-group-item">Task9</li>
+        </ul>
+        </nav>
+      </div>
     </div>
-    </nav>
+
     <hr>
 
   </div>
