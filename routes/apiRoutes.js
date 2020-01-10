@@ -309,7 +309,6 @@ function parseToken(request, response, next) {
   console.log("This is your request object " + util.inspect(request.body));
   //check if bearer is undefined
   if (typeof bearerHeader !== "undefined") {
-    //!COMES OUT AS UNDEFINED
     //split at the space
     var bearer = bearerHeader.split(" ");
     //get token from array
