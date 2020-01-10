@@ -1,6 +1,7 @@
 require("dotenv").config();
 var express = require("express");
 var exphbs = require("express-handlebars");
+var jwt = require("jsonwebtoken");
 
 var db = require("./models");
 
@@ -22,10 +23,33 @@ app.engine(
 app.set("view engine", "handlebars");
 
 // Routes
-require("./routes/apiRoutes")(app);
-require("./routes/htmlRoutes")(app);
+require("./routes/apiRoutes")(app, jwtVerify);
+require("./routes/htmlRoutes")(app, jwtVerify);
 
 var syncOptions = { force: false };
+
+function jwtVerify(req, res, next) {
+  console.log("verifying token...");
+  jwt.verify(req.token, process.env.SECRET_KEY, function(err, authData) {
+    if (err) {
+      console.log(
+        "This is your token in JWT Verify " + JSON.stringify(req.token)
+      );
+      console.log("This is your error JWT Verify logic " + err);
+      res.redirect("login"); //forbidden error
+    } else {
+      db.Users.findOne({
+        where: {
+          user_id: authData.user
+        }
+      }).then(function(response) {
+        console.log("JWT has Verified your token");
+        res.json(response);
+      });
+    }
+  });
+  next();
+}
 
 // If running a test, set syncOptions.force to true
 // clearing the `testdb`
