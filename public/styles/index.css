@@ -12,7 +12,6 @@
 #logo {
   height: 10vh;
   /* border: 1px solid seagreen; */
-  background-image: url(../images/logo.png);
   background-repeat: no-repeat;
 }
 
