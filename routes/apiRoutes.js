@@ -279,10 +279,11 @@ module.exports = function(app) {
             ).then(function(dbUsers) {
               console.log(dbUsers);
               if (dbUsers[1] === 1) {
-                res.json({
-                  success: true,
-                  message: "Users password has been updated"
-                });
+                res.render("reset", { updated: "Password has been updated" });
+                // res.json({
+                //   success: true,
+                //   message: "Users password has been updated"
+                // });
               }
             });
           });
