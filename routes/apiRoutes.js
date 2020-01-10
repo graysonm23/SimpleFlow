@@ -1,4 +1,3 @@
-var util = require("util");
 var db = require("../models");
 var bcrypt = require("bcryptjs");
 // eslint-disable-next-line no-unused-vars
@@ -14,6 +13,7 @@ require("dotenv").config();
 module.exports = function(app) {
   app.post("/profile", function(req, res) {
     console.log("This is your req in /profile" + req);
+    console.log(res);
   });
   app.post("/login", function(req, res) {
     console.log(req.body);
