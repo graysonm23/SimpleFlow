@@ -21,7 +21,7 @@ $(".btn-login").on("click", function(event) {
     loginResponseMessage = response.message;
     console.log(response);
     errorMsg();
-    window.location.pathname = "/profile";
+    window.location.pathname = "/dashboard";
     // var token = window.localStorage.getItem("Bearer");
     // console.log(response.token);
   });
