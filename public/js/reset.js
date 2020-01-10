@@ -21,6 +21,5 @@ $(".btn-login").on("click", function(event) {
   }).then(function(response) {
     console.log(response);
     // passResetResponse = response.message;
-    window.location.href = "/login";
   });
 });
