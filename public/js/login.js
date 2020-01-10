@@ -12,16 +12,22 @@ $(".btn-login").on("click", function(event) {
   };
 
   console.log(user);
+  var token = window.localStorage.getItem("Bearer");
   $.ajax({
     url: "/login",
     method: "POST",
-    data: user
+    data: user,
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
   }).then(function(response) {
     window.localStorage.setItem("Bearer", response.token);
     loginResponseMessage = response.message;
     console.log(response);
     errorMsg();
-    window.location.pathname = "/dashboard";
+    if (response.token) {
+      window.location.pathname = "/dashboard";
+    }
     // var token = window.localStorage.getItem("Bearer");
     // console.log(response.token);
   });

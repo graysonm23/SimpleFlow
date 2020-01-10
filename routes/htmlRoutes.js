@@ -1,6 +1,6 @@
 var db = require("../models");
 
-module.exports = function(app, jwt) {
+module.exports = function(app, parseToken, jwtVerify) {
   // Load index page
   app.get("/", function(req, res) {
     db.Users.findAll({}).then(function(dbExamples) {
@@ -20,10 +20,10 @@ module.exports = function(app, jwt) {
     });
   });
 
-  app.get("/profile", parseToken, jwt, function(req, res) {
+  app.get("/profile", parseToken, jwtVerify, function(req, res) {
     res.render("userprofile");
   });
-  app.get("/dashboard", parseToken, jwt, function(req, res) {
+  app.get("/dashboard", parseToken, jwtVerify, function(req, res) {
     res.render("dashboard");
   });
   //Render login page
@@ -39,10 +39,10 @@ module.exports = function(app, jwt) {
     res.render("forgot");
   });
 
-  app.get("/notifications", parseToken, jwt, function(req, res) {
+  app.get("/notifications", parseToken, jwtVerify, function(req, res) {
     res.render("notifications");
   });
-  app.get("/inbox", parseToken, jwt, function(req, res) {
+  app.get("/inbox", parseToken, jwtVerify, function(req, res) {
     res.render("inbox");
   });
 
@@ -51,23 +51,3 @@ module.exports = function(app, jwt) {
     res.render("404");
   });
 };
-// JWT token logic
-function parseToken(request, response, next) {
-  //get auth header value
-  var bearerHeader = request.headers["authorization"];
-
-  //check if bearer is undefined
-  if (typeof bearerHeader !== "undefined") {
-    //split at the space
-    var bearer = bearerHeader.split(" ");
-    //get token from array
-    var bearerToken = bearer[1];
-    //set the token
-    request.token = bearerToken;
-    //Next middleware
-    next();
-  } else {
-    //forbidden
-    response.sendStatus(403);
-  }
-}

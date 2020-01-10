@@ -1,3 +1,4 @@
+var util = require("util");
 require("dotenv").config();
 var express = require("express");
 var exphbs = require("express-handlebars");
@@ -23,10 +24,39 @@ app.engine(
 app.set("view engine", "handlebars");
 
 // Routes
-require("./routes/apiRoutes")(app, jwtVerify);
-require("./routes/htmlRoutes")(app, jwtVerify);
+require("./routes/apiRoutes")(app, parseToken, jwtVerify);
+require("./routes/htmlRoutes")(app, parseToken, jwtVerify);
 
 var syncOptions = { force: false };
+
+function parseToken(request, response, next) {
+  //get auth header value
+  var bearerHeader = request.headers["authorization"];
+  console.log("This is bearer header ", bearerHeader);
+
+  // console.log(util.inspect(request));
+  // console.log("Header " + util.inspect(request.headers));
+  // console.log("This is your request object " + util.inspect(request));
+
+  //check if bearer is undefined
+  if (typeof bearerHeader !== "undefined") {
+    console.log("im here dad");
+    //split at the space
+    var bearer = bearerHeader.split(" ");
+    //get token from array
+    var bearerToken = bearer[1];
+    //set the token
+    request.token = bearerToken;
+    //Next middleware
+    next();
+  } else {
+    //forbidden
+    console.log("im here mom");
+    // return response.json();
+    response.sendStatus(403);
+    // return response.sendStatus(403);
+  }
+}
 
 function jwtVerify(req, res, next) {
   console.log("verifying token...");
@@ -44,7 +74,7 @@ function jwtVerify(req, res, next) {
         }
       }).then(function(response) {
         console.log("JWT has Verified your token");
-        res.json(response);
+        return res.json(response);
       });
     }
   });

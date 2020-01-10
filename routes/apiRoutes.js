@@ -5,16 +5,13 @@ var nodemailer = require("nodemailer");
 // eslint-disable-next-line no-unused-vars
 var mailGun = require("nodemailer-mailgun-transport");
 var jwt = require("jsonwebtoken");
+
 var mailgun = require("mailgun-js");
 var saltRounds = 10;
 var crypto = require("crypto");
 require("dotenv").config();
 
-module.exports = function(app) {
-  app.post("/profile", function(req, res) {
-    console.log("This is your req in /profile" + req);
-    console.log(res);
-  });
+module.exports = function(app, jwtVerify) {
   app.post("/login", function(req, res) {
     console.log(req.body);
     db.Users.findOne({
@@ -63,14 +60,13 @@ module.exports = function(app) {
                       console.log("Unsuccessfully updated token in database");
                     }
                     res.json({ token });
+                    jwtVerify();
                   })
                   .catch(function(err) {
                     console.log(err);
                   });
               }
             );
-
-            // res.render("userprofile", { msg: "Email has been sent" });
           } else {
             // response is OutgoingMessage object that server response http request
             var DOMAIN = process.env.DOMAIN;
@@ -211,7 +207,7 @@ module.exports = function(app) {
       }
     }).then(function(dbUsers) {
       if (!dbUsers) {
-        res.json({
+        return res.json({
           success: false,
           message: "password token is invalid or has expired"
         });
@@ -228,7 +224,7 @@ module.exports = function(app) {
       }
     }).then(function(dbUsers) {
       if (!dbUsers) {
-        res.json({
+        return res.json({
           success: false,
           message: "couldn't find the user email"
         });
