@@ -1,4 +1,3 @@
-var util = require("util");
 var db = require("../models");
 var bcrypt = require("bcryptjs");
 // eslint-disable-next-line no-unused-vars
@@ -12,33 +11,9 @@ var crypto = require("crypto");
 require("dotenv").config();
 
 module.exports = function(app) {
-  // Get all examples
-  app.get("/examples", function(req, res) {
-    db.Users.findAll({}).then(function(dbExamples) {
-      res.json(dbExamples);
-    });
-  });
-  app.post("/profile", parseToken, function(req, res) {
+  app.post("/profile", function(req, res) {
     console.log("This is your req in /profile" + req);
-    jwt.verify(req.token, process.env.SECRET_KEY, function(err, authData) {
-      if (err) {
-        console.log(
-          "This is your token in JWT Verify " + JSON.stringify(req.token)
-        );
-        console.log("This is your error JWT Verify logic " + err);
-        res.sendStatus(403); //forbidden error
-        res.redirect("/");
-      } else {
-        db.Users.findOne({
-          where: {
-            user_id: authData.user
-          }
-        }).then(function(response) {
-          console.log("JWT has Verified your token");
-          res.json(response);
-        });
-      }
-    });
+    console.log(res);
   });
   app.post("/login", function(req, res) {
     console.log(req.body);
@@ -291,34 +266,4 @@ module.exports = function(app) {
       }
     });
   });
-  // Delete an example by id
-  app.delete("/examples/:id", function(req, res) {
-    db.Users.destroy({ where: { id: req.params.id } }).then(function(
-      dbExample
-    ) {
-      res.json(dbExample);
-    });
-  });
 };
-// JWT token logic
-function parseToken(request, response, next) {
-  //get auth header value
-  var bearerHeader = request.headers["authorization"];
-  console.log(bearerHeader + " This is your bearer header");
-  // console.log(util.inspect(response));
-  console.log("This is your request object " + util.inspect(request.body));
-  //check if bearer is undefined
-  if (typeof bearerHeader !== "undefined") {
-    //split at the space
-    var bearer = bearerHeader.split(" ");
-    //get token from array
-    var bearerToken = bearer[1];
-    //set the token
-    request.token = bearerToken;
-    //Next middleware
-    next();
-  } else {
-    //forbidden
-    response.sendStatus(403);
-  }
-}
