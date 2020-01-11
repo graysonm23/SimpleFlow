@@ -99,6 +99,10 @@ module.exports = function(app) {
     // eslint-disable-next-line no-undef
   });
 
+  app.post("/dashboard", function(req, res){
+
+  });
+
   app.post("/signup", function(req, res) {
     var DOMAIN = process.env.DOMAIN;
     var mg = mailgun({ apiKey: process.env.API_KEY, domain: DOMAIN });
