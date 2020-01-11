@@ -29,28 +29,28 @@
       </nav>
       <div class="navbar dragbox col-lg-12 d-flex justify-content-end">
         <ul id="sortable1" class="col-lg-4 list-group droptrue d-flex" style="cursor:pointer;">
-          <li class="list-group-item active">CONCEPT<span class="badge badge-danger badge-pill">14</span></li>
-          <li class="list-group-item">Task1</li>
-          <li class="list-group-item">Task2</li>
-          <li class="list-group-item">Task3</li>
+          <li class="list-group-item active drag-disabled" id="column-header">CONCEPT<span class="badge badge-danger badge-pill">14</span></li>
+          <li class="list-group-item" id="clickme">Task1</li>
+          <li class="list-group-item" id="clickme">Task2</li>
+          <li class="list-group-item" id="clickme">Task3</li>
         </ul>
         <ul id="sortable2" class="col-lg-4 list-group dropfalse d-flex" style="cursor:pointer;">
-          <li class="list-group-item active">IN PROGRESS<span class="badge badge-danger badge-pill">2</span></li>
-          <li class="list-group-item">Task4</li>
-          <li class="list-group-item">Task5</li>
-          <li class="list-group-item">Task6</li>
+           <li class="list-group-item active drag-disabled" id="column-header">IN PROGRESS<span class="badge badge-danger badge-pill">2</span></li>
+          <li class="list-group-item" id="clickme">Task4</li>
+          <li class="list-group-item" id="clickme">Task5</li>
+          <li class="list-group-item" id="clickme">Task6</li>
         </ul>
         <ul id="sortable3" class="col-lg-4 list-group dropfalse d-flex" style="cursor:pointer;">
-          <li class="list-group-item active">UPDATE<span class="badge badge-danger badge-pill">5</span></li>
-          <li class="list-group-item">Task7</li>
-          <li class="list-group-item">Task8</li>
-          <li class="list-group-item">Task9</li>
+           <li class="list-group-item active drag-disabled" id="column-header">UPDATE<span class="badge badge-danger badge-pill">5</span></li>
+          <li class="list-group-item" id="clickme">Task7</li>
+          <li class="list-group-item" id="clickme">Task8</li>
+          <li class="list-group-item" id="clickme">Task9</li>
         </ul>
         </nav>
       </div>
     </div>
     <hr>
-    <div class="row no-gutter">
+    {{!-- <div class="row no-gutter">
       {{!-- left slidebar --}}
       <div id="left-content" class="col-lg-2">
         <div id="logo" class="col-lg-12"></div>
@@ -126,22 +126,22 @@
             </div>
             <div class="navbar dragbox col-lg-10 d-flex justify-content-end" style="border: 1px solid salmon;">
               <ul id="sortable1" class="col-lg-4 list-group droptrue d-flex" style="cursor:pointer;">
-                <li class="list-group-item active">CONCEPT<span class="badge badge-danger badge-pill">14</span></li>
-                <li class="list-group-item">Task1</li>
-                <li class="list-group-item">Task2</li>
-                <li class="list-group-item">Task3</li>
+                <li class="list-group-item active drag-disabled" id="column-header">CONCEPT<span class="badge badge-danger badge-pill">14</span></li>
+                <li class="list-group-item draggable">Task1</li>
+                <li class="list-group-item draggable">Task2</li>
+                <li class="list-group-item draggable">Task3</li>
               </ul>
               <ul id="sortable2" class="col-lg-4 list-group dropfalse d-flex" style="cursor:pointer;">
-                <li class="list-group-item active">IN PROGRESS<span class="badge badge-danger badge-pill">2</span></li>
-                <li class="list-group-item">Task4</li>
-                <li class="list-group-item">Task5</li>
-                <li class="list-group-item">Task6</li>
+                <li class="list-group-item active drag-disabled" id="column-header">IN PROGRESS<span class="badge badge-danger badge-pill">2</span></li>
+                <li class="list-group-item draggable">Task4</li>
+                <li class="list-group-item draggable">Task5</li>
+                <li class="list-group-item draggable">Task6</li>
               </ul>
               <ul id="sortable3" class="col-lg-4 list-group dropfalse d-flex" style="cursor:pointer;">
-                <li class="list-group-item active">UPDATE<span class="badge badge-danger badge-pill">5</span></li>
-                <li class="list-group-item">Task7</li>
-                <li class="list-group-item">Task8</li>
-                <li class="list-group-item">Task9</li>
+                <li class="list-group-item active drag-disabled" id="column-header">UPDATE<span class="badge badge-danger badge-pill">5</span></li>
+                <li class="list-group-item draggable">Task7</li>
+                <li class="list-group-item draggable">Task8</li>
+                <li class="list-group-item draggable">Task9</li>
               </ul>
               </nav>
             </div>
@@ -149,9 +149,19 @@
             <hr>
           </div>
       </div>
-    </div>
+    </div> --}}
+    {{!-- <div id="popDiv" class="container-fluid" style="display: none">
+    <form action="/echo/html/" id="popForm" method="get">
+        <div>
+            <label for="Task">Task:</label>
+            <input type="text" name="task" id="pop-task" class="form-control input-md">
+            <button type="button" class="btn btn-primary" data-loading-text="Sending info.."><em class="icon-ok"></em> Save</button>
+        </div>
+    </form>
+</div>
+    </div> --}}
     <!-- Trigger the modal with a button -->
-    <button type="button" class="btn btn-info btn-lg" id="myBtn" data-toggle="modal" data-target="#myModal">Open
+    {{!-- <button type="button" class="btn btn-info btn-lg" id="myBtn" data-toggle="modal" data-target="#myModal">Open
       Modal</button>
     <!-- Modal -->
     <div class="modal fade" id="myModal" role="dialog">
@@ -169,20 +179,13 @@
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
           </div>
         </div>
-      </div>
+      </div> --}}
     </div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-      crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-      crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <script src="js/index.js"></script>
-    <script type="text/javascript">
+    <script src="js/dashboard.js"></script>
+    {{!-- <script type="text/javascript">
       $(".dragbox ul").sortable({
         connectWith: "ul",
+        items: "li:not(.drag-disabled)",
         dropOnEmpty: false
       });
-    </script>
+    </script> --}}
