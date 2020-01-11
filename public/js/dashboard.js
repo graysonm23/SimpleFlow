@@ -10,7 +10,7 @@ $(".dragbox ul").sortable({
 // });
 
 $(function(){
-  $('#clickme').popover({
+  $('.clickme').popover({
      
       placement: 'bottom',
       title: 'Enter a Task',
@@ -27,10 +27,13 @@ $(function(){
       `
   }).on('click', function(){
     // had to put it within the on click action so it grabs the correct info on submit
+    $(this).addClass("selected");
+    console.log($(this));
     $('#pop-button').click(function(){
-    
-        $('#clickme').popover('hide')
-      
-    })
+        var newTask = $("#pop-task").val().trim();
+        $(".selected").text(newTask);
+        $("li").removeClass("selected");
+        $('.clickme').popover('hide');
+    });
 })
 })
