@@ -1,3 +1,12 @@
+var token = window.localStorage.getItem("Bearer")
+$.ajax({
+  url: "/api/dashboard",
+  method: "POST",
+  data: token
+}).then(function(response) {
+  console.log(response);
+});
+
 $(".dragbox ul").sortable({
   connectWith: "ul",
   items: "li:not(.drag-disabled)",
