@@ -1,6 +1,5 @@
-// var Users = require("./users");
-
 module.exports = function(sequelize, DataTypes) {
+
     var Tasks = sequelize.define("tasks", {
       user_id: {
         type: DataTypes.STRING,
@@ -24,7 +23,8 @@ module.exports = function(sequelize, DataTypes) {
         defaultValue: ""
     }
   });
-    // Tasks.belongsTo(Users);
-
+  Tasks.associate = function(models) {
+    Tasks.belongsTo(models.Users, {foreignKey: 'user_id'})
+  };
     return Tasks;
   };
