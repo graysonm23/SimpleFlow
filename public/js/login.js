@@ -25,12 +25,12 @@ $(".btn-login").on("click", function(event) {
       window.localStorage.setItem("Bearer", response.token);
       window.location.pathname = "/dashboard";
     } else{
-      errorMsg();
+      errorMsg(loginResponseMessage);
     }
   });
 });
 
-function errorMsg() {
+function errorMsg(loginResponseMessage) {
   if (loginResponseMessage === "passwords do not match") {
     $(".errMsg").addClass("alert-danger");
     $(".errMsg").html(
