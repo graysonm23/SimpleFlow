@@ -1,4 +1,3 @@
-var loginResponseMessage;
 $(".btn-login").on("click", function(event) {
   event.preventDefault();
   var user = {
@@ -7,27 +6,31 @@ $(".btn-login").on("click", function(event) {
       .trim(),
     password: $("#inputPassword")
       .val()
-      .trim(),
-    token: window.localStorage.getItem("Bearer")
+      .trim()
+    // token: window.localStorage.getItem("Bearer")
   };
 
-  console.log(user);
+  // console.log(user);
   $.ajax({
     url: "/login",
     method: "POST",
     data: user
   }).then(function(response) {
-    window.localStorage.setItem("Bearer", response.token);
-    loginResponseMessage = response.message;
+    var loginResponseMessage = response.message;
     console.log(response);
-    errorMsg();
-    window.location.pathname = "/dashboard";
-    // var token = window.localStorage.getItem("Bearer");
-    // console.log(response.token);
+    // errorMsg();
+    if(loginResponseMessage ==="success"){
+      // var token = window.localStorage.getItem("Bearer");
+      console.log(response.token);
+      window.localStorage.setItem("Bearer", response.token);
+      window.location.pathname = "/dashboard";
+    } else{
+      errorMsg(loginResponseMessage);
+    }
   });
 });
 
-function errorMsg() {
+function errorMsg(loginResponseMessage) {
   if (loginResponseMessage === "passwords do not match") {
     $(".errMsg").addClass("alert-danger");
     $(".errMsg").html(
