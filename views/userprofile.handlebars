@@ -3,11 +3,10 @@
         <div class="d-flex" id="wrapper">
             {{> slidebar }}
         </div>
-        <div id="right-content" class="col-lg-10 text-center align-items-center">
-            <div class="profile text-left">
-                <p>Profile</p>
-            </div>
-            <div class="text-left">
+        <div id="right-content" class="col-lg-12 align-items-center">
+            <p></p>
+            <div class="text-left col-md-11 offset-md-3">
+                <button class="profilePic offset-md-6" data-toggle="modal" data-target="#uploadPic"></button>
                 <form>
                     <div class="userprofile form-group">
                         <label for="InputName">Full Name</label>
@@ -19,13 +18,34 @@
                             else.</small>
                         <label for="InputPassword">Password</label>
                         <input type="password" class="form-control" id="InputPassword" placeholder="Password">
-                        <div class="form-check">
-                            <input type="checkbox" class="form-check-input" id="Check">
-                            <label class="form-check-label" for="Check">Remember Me</label>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                </form>
 
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-submit text-uppercase">Submit</button>
+                        </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="modal fade" id="uploadPic" tabindex="-1" role="dialog" aria-labelledby="uploadPicture"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <label for="picUrl">Profile Link</label>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+
+                        <input type="text" class="form-control" id="InputUrl" placeholder="Enter your link here.">
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Upload</button>
+                    </div>
+                </div>
             </div>
         </div>
 
