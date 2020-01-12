@@ -1,8 +1,8 @@
-
 module.exports = function(app) {
   // Load index page
   app.get("/", function(req, res) {
     // db.Users.findAll({}).then(function(dbExamples) {
+
       res.render("login");
       // console.log(dbExamples);
     // });
@@ -51,4 +51,3 @@ module.exports = function(app) {
   });
 // });
 // JWT token logic
-}
