@@ -11,7 +11,7 @@ var saltRounds = 10;
 var crypto = require("crypto");
 require("dotenv").config();
 
-module.exports = function(app, jwtVerify) {
+module.exports = function(app) {
   app.post("/login", function(req, res) {
     console.log(req.body);
     db.Users.findOne({
@@ -83,6 +83,16 @@ module.exports = function(app, jwtVerify) {
               authData: authData
           });
           console.log(authData);
+          // db.Tasks.create({
+          //   user_id: authData,
+          //   email: req.body.email,
+          //   password: hash
+          // }).then(function(dbUsers) {
+          //   res.json({ status: "success" });
+          //   // eslint-disable-next-line no-console
+          //   console.log(dbUsers);
+          // });
+
       }
   });
 
