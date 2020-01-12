@@ -1,11 +1,10 @@
-// var db = require("../models");
-
 module.exports = function(app) {
   // Load index page
   app.get("/", function(req, res) {
     // db.Users.findAll({}).then(function(dbExamples) {
-    res.render("login");
-    // console.log(dbExamples);
+
+      res.render("login");
+      // console.log(dbExamples);
     // });
   });
 
@@ -50,24 +49,5 @@ module.exports = function(app) {
   app.get("*", function(req, res) {
     res.render("404");
   });
-};
+// });
 // JWT token logic
-// function parseToken(request, response, next) {
-//   //get auth header value
-//   var bearerHeader = request.headers["authorization"];
-
-//   //check if bearer is undefined
-//   if (typeof bearerHeader !== "undefined") {
-//     //split at the space
-//     var bearer = bearerHeader.split(" ");
-//     //get token from array
-//     var bearerToken = bearer[1];
-//     //set the token
-//     request.token = bearerToken;
-//     //Next middleware
-//     next();
-//   } else {
-//     //forbidden
-//     // response.sendStatus(403);
-//   }
-// }
