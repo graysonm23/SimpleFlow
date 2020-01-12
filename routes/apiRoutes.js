@@ -28,47 +28,7 @@ module.exports = function(app, jwtVerify) {
           response
         ) {
           if (err) {
-            res.status(403);
-          }
-          if (response) {
-            //if passwords match
-            // res.json(dbUsers);
-            var user = dbUsers.dataValues.user_id;
-            jwt.sign(
-              { user: user },
-              process.env.SECRET_KEY,
-              { expiresIn: "10 days" } /*sets token to expire in 30 seconds*/,
-              function(err, token) {
-                console.log(
-                  "This is your user in jwt sign --------------" + user
-                );
-                console.log(
-                  "This is your token in jwt sign ---------------- " + token
-                );
-                db.Users.update(
-                  { token: token },
-                  {
-                    where: { email: req.body.email },
-                    returning: true,
-                    plain: true
-                  }
-                )
-                  .then(function(dbresponse) {
-                    if (dbresponse[1] === 1) {
-                      console.log("Successfully updated token in database");
-                    } else {
-                      console.log("Unsuccessfully updated token in database");
-                    }
-                    res.json({ token });
-                    jwtVerify();
-                  })
-                  .catch(function(err) {
-                    console.log(err);
-                  });
-              }
-            );
-          } else {
-            // response is OutgoingMessage object that server response http request
+
             var DOMAIN = process.env.DOMAIN;
             var mg = mailgun({ apiKey: process.env.API_KEY, domain: DOMAIN });
             var data = {
@@ -84,7 +44,23 @@ module.exports = function(app, jwtVerify) {
             return res.json({
               success: false,
               message: "passwords do not match"
-            });
+            });          
+          }
+          if (response) {
+            //if passwords match
+            // res.json(dbUsers);
+            var user = dbUsers.dataValues.user_id;
+            jwt.sign(
+              { user: user },
+              process.env.SECRET_KEY,
+              { expiresIn: "10 days" } /*sets token to expire in 30 seconds*/,
+              function(err, token) {
+                res.json({token: token, message: "success"});
+
+              }
+            );
+
+            // res.render("userprofile", { msg: "Email has been sent" });
           }
         });
       } else {
@@ -93,6 +69,21 @@ module.exports = function(app, jwtVerify) {
       }
     });
     // eslint-disable-next-line no-undef
+  });
+
+  app.post("/api/dashboard", parseToken, function(req, res){
+    console.log(req.token);
+    jwt.verify(req.token, process.env.SECRET_KEY, function(err, authData){
+      if(err){
+          res.status(403); //forbidden error
+      } else{
+          res.json({
+              message: 'post created...',
+              authData: authData
+          });
+      }
+  });
+
   });
 
   app.post("/signup", function(req, res) {
@@ -263,3 +254,23 @@ module.exports = function(app, jwtVerify) {
     });
   });
 };
+function parseToken(request, response, next) {
+  //get auth header value
+  var bearerHeader = request.headers["authorization"];
+
+  //check if bearer is undefined
+  if (typeof bearerHeader !== "undefined") {
+    //split at the space
+    var bearer = bearerHeader.split(" ");
+    //get token from array
+    var bearerToken = bearer[1];
+    //set the token
+    request.token = bearerToken;
+    //Next middleware
+    next();
+  } else {
+    //forbidden
+    // response.sendStatus(403);
+  }
+
+}
