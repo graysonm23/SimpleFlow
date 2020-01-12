@@ -1,9 +1,17 @@
-var token = window.localStorage.getItem("Bearer")
+var token = window.localStorage.getItem("Authorization");
+
+var jwtToken = "Bearer " + token;
+console.log(token);
+if(!token){
+  window.location.pathname = "/login"; //if no token redirect to login
+}
+
 $.ajax({
   url: "/api/dashboard",
   method: "POST",
-  data: token
+  headers: {authorization: jwtToken}
 }).then(function(response) {
+
   console.log(response);
 });
 

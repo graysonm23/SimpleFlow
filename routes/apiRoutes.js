@@ -78,11 +78,13 @@ module.exports = function(app) {
     jwt.verify(req.token, process.env.SECRET_KEY, function(err, authData){
       if(err){
           res.status(403); //forbidden error
+          console.log(err);
       } else{
           res.json({
               message: 'post created...',
               authData: authData
           });
+          console.log(authData);
       }
   });
 
@@ -257,13 +259,14 @@ module.exports = function(app) {
   });
 };
 function parseToken(request, response, next) {
-  //get auth header value
+  console.log('hi')  //get auth header value
   var bearerHeader = request.headers["authorization"];
-
+console.log(bearerHeader)
   //check if bearer is undefined
   if (typeof bearerHeader !== "undefined") {
     //split at the space
     var bearer = bearerHeader.split(" ");
+    console.log(bearer)
     //get token from array
     var bearerToken = bearer[1];
     //set the token
@@ -272,7 +275,7 @@ function parseToken(request, response, next) {
     next();
   } else {
     //forbidden
-    // response.sendStatus(403);
+    response.json({message: "not logged in"});
   }
 
 }
