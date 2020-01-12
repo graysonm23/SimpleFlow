@@ -10,11 +10,13 @@ $(".btn-login").on("click", function(event) {
     // token: window.localStorage.getItem("Bearer")
   };
 
-  // console.log(user);
   $.ajax({
     url: "/login",
     method: "POST",
-    data: user
+    data: user,
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
   }).then(function(response) {
     var loginResponseMessage = response.message;
     console.log(response);

@@ -24,4 +24,8 @@ function resetMsg() {
     $(".resetMsg").addClass("alert-success");
     $(".resetMsg").html("Reset link sent to email");
   }
+  if (passwordResetMessage === "no user found in database") {
+    $(".resetMsg").addClass("alert-danger");
+    $(".resetMsg").html("Account does not exist");
+  }
 }
