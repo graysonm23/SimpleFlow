@@ -1,5 +1,5 @@
 #sidebar-wrapper {
-  min-height: 100vh;
+  min-height: calc(140vh - 250px);
   margin-left: -15rem;
   -webkit-transition: margin 0.25s ease-out;
   -moz-transition: margin 0.25s ease-out;
