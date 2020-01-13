@@ -40,7 +40,7 @@
 }
 
 #sidebar-wrapper {
-  border-right: 1px solid rgb(196, 196, 196);
+  /* border-right: 1px solid rgb(255, 140, 74); */
 }
 
 #sidebar-wrapper .active {
@@ -51,11 +51,13 @@
 }
 
 .list-group-item {
-  color: rgb(255, 140, 74);
+  color: rgb(143, 143, 143);
+  border: none;
 }
 
 .list-group .list-group-item:hover {
   transition: 0.4s;
+  background-color: rgba(255, 255, 255, 0);
 }
 
 .noneDataPic {
