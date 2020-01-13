@@ -3,21 +3,10 @@ module.exports = function(app) {
   app.get("/", function(req, res) {
     // db.Users.findAll({}).then(function(dbExamples) {
 
-      res.render("login");
-      // console.log(dbExamples);
+    res.render("login");
+    // console.log(dbExamples);
     // });
   });
-
-  // Load example page and pass in an example by id
-  // app.get("/example/:id", function(req, res) {
-  //   db.Users.findOne({ where: { id: req.params.id } }).then(function(
-  //     dbExample
-  //   ) {
-  //     res.render("example", {
-  //       example: dbExample
-  //     });
-  //   });
-  // });
 
   app.get("/profile", function(req, res) {
     res.render("userprofile");
@@ -50,4 +39,4 @@ module.exports = function(app) {
     res.render("404");
   });
 };
-// JWT token logic
+
