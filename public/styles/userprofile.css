@@ -3,6 +3,14 @@
   width: 100%;
 }
 
+#right-content .bg-image {
+  background-image: url("https://source.unsplash.com/AVWmtS-qK3Y/600x1200");
+  width: 100vh;
+  height: 20vh;
+  z-index: -1;
+  background-size: cover;
+}
+
 .userprofile label,
 .userprofile input,
 .userprofile small,
