@@ -11,6 +11,12 @@ module.exports = function(sequelize, DataTypes) {
         allowNull: false,
         defaultValue: ""
       },
+      task_title: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        defaultValue: "Enter a Task"
+      
+    },
       task_text: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -23,8 +29,8 @@ module.exports = function(sequelize, DataTypes) {
         defaultValue: ""
     }
   });
-  Tasks.associate = function(models) {
-    Tasks.belongsTo(models.Users, {foreignKey: 'user_id'})
-  };
+  // Tasks.associate = function(models) {
+  //   Tasks.belongsTo(models.Users, {foreignKey: 'user_id'})
+  // };
     return Tasks;
   };

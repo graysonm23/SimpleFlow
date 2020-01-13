@@ -11,7 +11,7 @@ var saltRounds = 10;
 var crypto = require("crypto");
 require("dotenv").config();
 
-module.exports = function(app, jwtVerify) {
+module.exports = function(app) {
   app.post("/login", function(req, res) {
     console.log(req.body);
     db.Users.findOne({
@@ -76,11 +76,23 @@ module.exports = function(app, jwtVerify) {
     jwt.verify(req.token, process.env.SECRET_KEY, function(err, authData){
       if(err){
           res.status(403); //forbidden error
+          console.log(err);
       } else{
           res.json({
               message: 'post created...',
               authData: authData
           });
+          console.log(authData);
+          // db.Tasks.create({
+          //   user_id: authData,
+          //   email: req.body.email,
+          //   password: hash
+          // }).then(function(dbUsers) {
+          //   res.json({ status: "success" });
+          //   // eslint-disable-next-line no-console
+          //   console.log(dbUsers);
+          // });
+
       }
   });
 
@@ -255,13 +267,14 @@ module.exports = function(app, jwtVerify) {
   });
 };
 function parseToken(request, response, next) {
-  //get auth header value
+  console.log('hi')  //get auth header value
   var bearerHeader = request.headers["authorization"];
-
+console.log(bearerHeader)
   //check if bearer is undefined
   if (typeof bearerHeader !== "undefined") {
     //split at the space
     var bearer = bearerHeader.split(" ");
+    console.log(bearer)
     //get token from array
     var bearerToken = bearer[1];
     //set the token
@@ -270,7 +283,7 @@ function parseToken(request, response, next) {
     next();
   } else {
     //forbidden
-    // response.sendStatus(403);
+    response.json({message: "not logged in"});
   }
 
 }

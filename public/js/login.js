@@ -10,13 +10,11 @@ $(".btn-login").on("click", function(event) {
     // token: window.localStorage.getItem("Bearer")
   };
 
+  // console.log(user);
   $.ajax({
     url: "/login",
     method: "POST",
-    data: user,
-    headers: {
-      Authorization: `Bearer ${token}`
-    }
+    data: user
   }).then(function(response) {
     var loginResponseMessage = response.message;
     console.log(response);
@@ -24,7 +22,7 @@ $(".btn-login").on("click", function(event) {
     if(loginResponseMessage ==="success"){
       // var token = window.localStorage.getItem("Bearer");
       console.log(response.token);
-      window.localStorage.setItem("Bearer", response.token);
+      window.localStorage.setItem("Authorization", response.token);
       window.location.pathname = "/dashboard";
     } else{
       errorMsg(loginResponseMessage);
