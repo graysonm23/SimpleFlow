@@ -1,14 +1,14 @@
 {
   "development": {
     "username": "root",
-    "password": null,
+    "password": "Laihoss9328!",
     "database": "simpleflow_dev",
     "host": "localhost",
     "dialect": "mysql"
   },
   "test": {
     "username": "root",
-    "password": null,
+    "password": "Laihoss9328!",
     "database": "simpleflow_dev",
     "host": "localhost",
     "dialect": "mysql",
