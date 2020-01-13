@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-unused-vars
 var util = require("util");
 require("dotenv").config();
 var express = require("express");
