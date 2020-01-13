@@ -1,8 +1,10 @@
-<div class="container-fluid">
-    <div class="row">
-        <div class="d-flex" id="wrapper">
-            {{> slidebar }}
+<div class="wrapper">
+    <!-- Sidebar Holder -->
+    <nav id="sidebar">
+        <div class="sidebar-header">
+            <img src="images/logo.png" alt="SimpleFlow logo">
         </div>
+<<<<<<< HEAD
         <div id="right-content" class="col-lg-12 align-items-center">
             <div class="text-left offset-md-3">
                 <button class="profilePic offset-md-6" data-toggle="modal" data-target="#uploadPic"></button>
@@ -17,40 +19,68 @@
                             else.</small>
                         <label for="InputPassword">Password</label>
                         <input type="password" class="form-control" id="InputPassword" placeholder="Password">
+=======
+>>>>>>> 28c126c80e121a95d5164a938ecd96e0f5a86e5c
 
-                        <div class="text-center">
-                            <button type="submit" class="btn btn-submit text-uppercase">Submit</button>
-                        </div>
-                </form>
+        <ul style="text-align: center;" class="list-unstyled components">
+            <p>Welcome!</p>
+            <li class="active">
+                <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Home</a>
+                <ul class="collapse list-unstyled" id="homeSubmenu">
+                    <li>
+                        <a href="/profile">Profile</a>
+                    </li>
+                    <li>
+                        <a href="/inbox">Inbox</a>
+                    </li>
+                    <li>
+                        <a href="/notifications">Notifications</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Account</a>
+                <ul class="collapse list-unstyled" id="pageSubmenu">
+                    <li>
+                        <a href="/forgot">Reset Password</a>
+                    </li>
+                    <li>
+                        <a href="/login">Login</a>
+                    </li>
+                    <li>
+                        <a href="/signup">Sign Up!</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="/dashboard">Dashboard</a>
+            </li>
+
+        </ul>
+
+        <ul class="list-unstyled CTAs">
+            <li>
+                <a href="https://github.com/graysonm23/SimpleFlow" class="github">Open Source Project</a>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Page Content Holder -->
+    <div id="content">
+
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+
+                <button type="button" id="sidebarCollapse" class="navbar-btn">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <h1 class="header">Dashboard</h1>
+
             </div>
-        </div>
-
-        <div class="modal fade" id="uploadPic" tabindex="-1" role="dialog" aria-labelledby="uploadPicture"
-            aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <label for="picUrl">Profile Link</label>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-
-                        <input type="text" class="form-control" id="InputUrl" placeholder="Enter your link here.">
-
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Upload</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
+        </nav>
+        {{> profile }}
     </div>
 </div>
-
-</div>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="js/profile.js"></script>

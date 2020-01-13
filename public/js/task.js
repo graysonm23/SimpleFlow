@@ -1,127 +1,59 @@
-// $(function() {
-//   $(".card").sortable({
-//     connectWith: ".card",
-//     handle: ".card .card-title .card-body .card-sort",
-//     placeholder: "portlet-placeholder ui-corner-all"
-//   });
-// });
-
-function divClickedTitle() {
-  var divHtml = $(this).html();
-  var editableText = $("<textarea />");
-  editableText.val(divHtml);
-  $(this).replaceWith(editableText);
-  editableText.focus();
-  // setup the blur event for this new textarea
-  editableText.blur(editableTextBlurredTitle);
-  console.log(this);
-}
-
-function editableTextBlurredTitle() {
-  var html = $(this).val();
-  var viewableText = $("<h5 class='card-title editTextTitle'>");
-  viewableText.html(html);
-  $(this).replaceWith(viewableText);
-  // setup the click event for this new div
-  viewableText.click(divClickedTitle);
-}
-
-function divClickedP() {
-  var divHtml = $(this).html();
-  var editableText = $("<textarea />");
-  editableText.val(divHtml);
-  $(this).replaceWith(editableText);
-  editableText.focus();
-  // setup the blur event for this new textarea
-  editableText.blur(editableTextBlurredP);
-}
-
-function editableTextBlurredP() {
-  var html = $(this).val();
-  var viewableText = $("<p class='card-text editTextP'>");
-  viewableText.html(html);
-  $(this).replaceWith(viewableText);
-  // setup the click event for this new div
-  viewableText.click(divClickedP);
-}
-
-$(document).ready(function() {
-  var htmlElement = $(".started");
-  var i = 0;
-  $(htmlElement).each(function() {
-    i++;
-    $(this).attr("value", "started-" + i);
-  });
-  $("body").on("click", ".Started button", function() {
-    i++;
-    $(".Started").append(
-      `<div class='card-sort started ui-sortable' style='max-width: 300px; min-width: 300px;' value='started-${i}'><div class='card ui-sortable-handle' style='max-width: 300px;'><a style="position: absolute; right: 10px; bottom: 0px;"
-                    class="close" href="#"><i style="color: grey; font-size: 20px;" class="fas fa-minus-square"></i></a><div class='card-body'><h5 class='card-title editTextTitle'>Not a Card title</h5><p class='card-text editTextP' style='overflow: auto;'>Some quick example text to build on the card title and make up the bulk of the card's content.</p></div><button class="addButton" style="cursor: pointer; background: none; border: none; position: absolute; bottom: 0;
-                left: 10px;"><i style="color: grey; font-size: 20px;" class="fas fa-plus-square"></i></button></div></div>`
-    );
-    $(".editTextTitle").click(divClickedTitle);
-    $(".editTextP").click(divClickedP);
-    close();
-  });
-
-  var htmlElementTodo = $(".todo");
-  var j = 0;
-  $(htmlElementTodo).each(function() {
-    j++;
-    $(this).attr("value", "todo-" + j);
-  });
-  $("body").on("click", ".To-do button", function() {
-    j++;
-    $(".To-do").append(
-      `<div class='card-sort todo ui-sortable' style='max-width: 300px; min-width: 300px;' value='todo-${j}'><div class='card ui-sortable-handle' style='max-width: 300px;'><a style="position: absolute; right: 10px; bottom: 0px;"
-                    class="close" href="#"><i style="color: grey; font-size: 20px;" class="fas fa-minus-square"></i></a><div class='card-body'><h5 class='card-title editTextTitle'>Not a Card title</h5><p class='card-text editTextP' style='overflow: auto;'>Some quick example text to build on the card title and make up the bulk of the card's content.</p></div><button class="addButton" style="cursor: pointer; background: none; border: none; position: absolute; bottom: 0;
-                left: 10px;"><i style="color: grey; font-size: 20px;" class="fas fa-plus-square"></i></button></div></div>`
-    );
-    $(".editTextTitle").click(divClickedTitle);
-    $(".editTextP").click(divClickedP);
-    close();
-  });
-
-  var htmlElementDone = $(".done");
-  var k = 0;
-  $(htmlElementDone).each(function() {
-    k++;
-    $(this).attr("value", "done-" + k);
-  });
-  $("body").on("click", ".Done button", function() {
-    k++;
-    $(".Done").append(
-      `<div class='card-sort done ui-sortable' style='max-width: 300px; min-width: 300px;' value='done-${k}'><div class='card ui-sortable-handle' style='max-width: 300px;'><a style="position: absolute; right: 10px; bottom: 0px;"
-                    class="close" href="#"><i style="color: grey; font-size: 20px;" class="fas fa-minus-square"></i></a><div class='card-body'><h5 class='card-title editTextTitle'>Not a Card title</h5><p class='card-text editTextP' style='overflow: auto;'>Some quick example text to build on the card title and make up the bulk of the card's content.</p></div><button class="addButton" style="cursor: pointer; background: none; border: none; position: absolute; bottom: 0;
-                left: 10px;"><i style="color: grey; font-size: 20px;" class="fas fa-plus-square"></i></button></div></div>`
-    );
-    $(".editTextTitle").click(divClickedTitle);
-    $(".editTextP").click(divClickedP);
-    close();
-  });
-
-  $(function() {
-    $("div").sortable({
-      connectWith: ".card-sort",
-      items:
-        ":not(.card-title, .card-text, .card-body, button, a, .page-header)",
-      cursor: "move",
-      revert: true,
-      axis: "y",
-      forcePlaceholderSize: true
-    });
-    $(".card-sort").disableSelection();
-  });
-  $(".editTextTitle").click(divClickedTitle);
-  $(".editTextP").click(divClickedP);
-
-  function close() {
-    $(".close").on("click", function() {
-      var $target = $(this).parents(".card-sort");
-      $target.hide("slow", function() {
-        $target.remove();
-      });
-    });
+function searchToggle(obj, evt) {
+  var container = $(obj).closest(".search-wrapper");
+  if (!container.hasClass("active")) {
+    container.addClass("active");
+    evt.preventDefault();
+  } else if (
+    container.hasClass("active") &&
+    $(obj).closest(".input-holder").length == 0 &&
+    $(obj).closest(".textarea").length == 0
+  ) {
+    container.removeClass("active");
+    // clear input
+    container.find(".search-input").val("");
+    container.find(".searcharea").val("");
   }
-  close();
+}
+$(".textarea").hide();
+$(".search-icon").on("click", function() {
+  $(this).attr("id", "open");
+  $(".textarea").show("slow", "swing");
+
+  var task = {
+    name: $(".search-input")
+      .val()
+      .trim(),
+    description: $(".searcharea")
+      .val()
+      .trim()
+  };
+  if (task.name.length > 0 && task.description.length > 0) {
+    console.log(task);
+    function addCols() {
+      var myCol = $('<div class="col-sm-3 col-md-3 pb-2"></div>');
+      var myPanel = $(
+        `<div class="card card-outline-info" id="Panel"><div class="card-block"><div class="card-title"><span> ${task.name}</span><button type="button" class="close" data-target="#Panel" data-dismiss="alert"><span class="float-right"><i class="fa fa-remove"></i></span></button></div><p>${task.description}</p></div></div>`
+      );
+      myPanel.appendTo(myCol);
+      myCol.appendTo("#contentPanel");
+
+      $(".close").on("click", function(e) {
+        e.stopPropagation();
+        var $target = $(this).parents(".col-sm-3");
+        $target.hide("slow", function() {
+          $target.remove();
+        });
+      });
+    }
+    addCols();
+    $.ajax({
+      url: "/dashboard",
+      method: "POST",
+      data: task
+    }).then(function(response) {});
+  }
+});
+$(".close").on("click", function() {
+  $(".search-icon").removeAttr("id");
+  $(".textarea").hide("slow", "swing");
 });
