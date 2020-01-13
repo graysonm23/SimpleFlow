@@ -39,7 +39,3 @@ module.exports = function(app) {
     res.render("404");
   });
 };
-<<<<<<< HEAD
-=======
-
->>>>>>> 622a6a92a9c3164929f4412efe78d3d25a0dcbc2
