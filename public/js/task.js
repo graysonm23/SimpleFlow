@@ -14,6 +14,7 @@ function divClickedTitle() {
   editableText.focus();
   // setup the blur event for this new textarea
   editableText.blur(editableTextBlurredTitle);
+  console.log(this);
 }
 
 function editableTextBlurredTitle() {
