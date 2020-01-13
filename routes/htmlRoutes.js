@@ -8,17 +8,6 @@ module.exports = function(app) {
     // });
   });
 
-  // Load example page and pass in an example by id
-  // app.get("/example/:id", function(req, res) {
-  //   db.Users.findOne({ where: { id: req.params.id } }).then(function(
-  //     dbExample
-  //   ) {
-  //     res.render("example", {
-  //       example: dbExample
-  //     });
-  //   });
-  // });
-
   app.get("/profile", function(req, res) {
     res.render("userprofile");
   });
@@ -50,3 +39,7 @@ module.exports = function(app) {
     res.render("404");
   });
 };
+<<<<<<< HEAD
+=======
+
+>>>>>>> 622a6a92a9c3164929f4412efe78d3d25a0dcbc2
