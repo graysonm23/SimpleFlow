@@ -399,3 +399,15 @@ textarea {
   position: absolute;
   right: 0;
 }
+
+#save-task {
+  margin-left: 187px;
+  margin-top: 221px;
+  padding: 4px;
+}
+
+.searcharea {
+  display:none;
+}
+
+
