@@ -125,18 +125,18 @@ module.exports = function(app) {
     });
   });
 
-  // app.post("/api/deletetask", function(req, res){
-  //   console.log(req.token);
-
-  //     db.Tasks.destroy({where: {task_id:userID} }).then(function(dbTasks){
-  //           if(dbTasks){
-  //             res.json(dbTasks);
-  //           } else{
-  //             res.json("no tasks found");
-  //           }
-  //        });
-
-  // });
+  app.post("/api/deletetask", function(req, res) {
+    console.log(req.token);
+    db.Tasks.destroy({ where: { task_id: req.body.value } }).then(function(
+      dbTasks
+    ) {
+      if (dbTasks) {
+        res.json(dbTasks);
+      } else {
+        res.json("no tasks found");
+      }
+    });
+  });
 
   app.post("/signup", function(req, res) {
     var DOMAIN = process.env.DOMAIN;

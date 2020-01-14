@@ -78,7 +78,7 @@ $(document).on("click", ".closeCard", function(e) {
   console.log($(this.parents()[3]));
   var cardValJQuery = $(this).parents()[3];
   var cardValJS = cardValJQuery.getAttribute("value");
-  var taskId = {
+  var task_id = {
     value: cardValJS
   };
   e.stopPropagation();
@@ -135,7 +135,9 @@ function showhideImage() {
     !$("#taskcompleted").children().length
   ) {
     $("#dashBgImage").show();
+    $(".bounce").show();
   } else {
     $("#dashBgImage").hide();
+    $(".bounce").hide();
   }
 }
