@@ -3,13 +3,9 @@
   --input-padding-y: 0.75rem;
 }
 
-.signup,
-.image {
-  min-height: 100vh;
-}
-
 .bg-image {
   background-image: url("https://source.unsplash.com/AVWmtS-qK3Y/600x1200");
+  min-height: 100vh;
   background-size: cover;
   background-position: center;
 }
