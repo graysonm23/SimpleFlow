@@ -3,13 +3,14 @@
   --input-padding-y: 0.75rem;
 }
 
-#login,
+/* #login,
 .image {
   min-height: 100vh;
-}
+} */
 
 #loginPageImage {
   background-image: url("https://source.unsplash.com/m2TU2gfqSeE/600x1200");
+  min-height: 100vh;
   background-size: cover;
   background-position: center;
 }
