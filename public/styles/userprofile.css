@@ -1,58 +1,45 @@
-.userprofile {
-  margin: 10vh;
-  width: 100%;
-}
-
-#right-content .bg-image {
-  background-image: url("https://source.unsplash.com/AVWmtS-qK3Y/600x1200");
-  width: 100vh;
-  height: 20vh;
-  z-index: -1;
-  background-size: cover;
-}
-
-.userprofile label,
-.userprofile input,
-.userprofile small,
-.userprofile #check,
-.userprofile button {
-  margin: 1.5vh;
-}
-
-.userprofile > small {
-  margin-left: 4vh;
-}
-
-.btn-submit {
-  background-color: rgb(255, 140, 74);
-  color: rgb(255, 255, 255);
-  border-radius: 16vh;
-  height: 7vh;
-  width: 40vh;
-}
-
-.userprofile input {
-  border-radius: 16vh;
-  height: 8vh;
-  /* border-bottom: 1px solid olive; */
-}
-.btn-submit:hover {
-  background-color: rgb(228, 113, 47);
-}
-
-.profilePic {
-  border-radius: 50vh;
-  background: rgb(128, 74, 255);
-  width: 20vh;
-  height: 20vh;
-}
-
-.modal-footer > .btn-primary {
+.profile img {
+  width: 30vh;
+  height: 30vh;
   background-color: rgb(128, 74, 255);
-  border: 1px solid rgb(128, 74, 255);
+  border: none;
+  border-radius: 80vh;
+  margin-top: 10vh;
 }
 
-.modal-footer > .btn-primary:hover {
-  background-color: rgb(57, 84, 238);
-  border-color: rgb(57, 84, 238);
+h5 {
+  text-align: left;
+  float: left;
+}
+
+label,
+input {
+  color: rgb(46, 46, 46);
+  margin-right: 5vh;
+  width: 40vh;
+  height: 8vh;
+}
+
+input {
+  border-radius: 6vh;
+  border: 1px solid rgb(255, 140, 74);
+  padding-left: 10px;
+}
+
+.email,
+.password {
+  color: rgb(255, 140, 74);
+}
+
+.details {
+  margin-top: 16vh;
+}
+
+button {
+  border: none;
+  background-color: transparent;
+}
+
+.modal-backdrop {
+  z-index: -1;
 }

@@ -1,16 +1,11 @@
-<div class="container-fluid">
-    <h1 class="projectHeader">Tasks</h1>
-    <div class="search-wrapper">
-        <div class="input-holder">
-            <input type="text" class="search-input" placeholder="Task name..." />
-            <button class="search-icon" onclick="searchToggle(this, event);"><span><i
-                        class="fas fa-plus fa-lg"></i></span></button>
-        </div>
-        <div class="textarea"><textarea class="searcharea" placeholder="Task description..."></textarea></div>
-        <span class="close" onclick="searchToggle(this, event);"></span>
+<div class="search-wrapper">
+    <div class="input-holder">
+        <input type="text" class="search-input" placeholder="Task name..." />
+        <button class="search-icon" onclick="searchToggle(this, event);"><span><i
+                    class="fas fa-plus fa-lg"></i></span></button>
     </div>
-    <div class="row" id="contentPanel">
-
-    </div>
+    <div class="textarea"><textarea class="searcharea" placeholder="Task description..."></textarea></div>
+    {{!-- <button id="save-task">Save</button> --}}
+    <span id="close-textarea" class="close" onclick="searchToggle(this, event);"></span>
 </div>
 <script src="../js/task.js"></script>

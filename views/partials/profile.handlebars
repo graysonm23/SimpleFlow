@@ -1,52 +1,24 @@
+<head>
+    <link rel="stylesheet" href="/styles/userprofile.css" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="/styles/task.css" media="screen" title="no title" charset="utf-8">
+
+</head>
 <div class="container-fluid">
     <div class="row">
-        <div class="d-flex" id="wrapper">
-        </div>
-        <div id="right-content" class="col-lg-12 align-items-center">
-            <p></p>
-            <div class="text-left col-md-11 offset-md-3">
-                <button class="profilePic offset-md-6" data-toggle="modal" data-target="#uploadPic"></button>
-                <form>
-                    <div class="userprofile form-group">
-                        <label for="InputName">Full Name</label>
-                        <input type="text" class="form-control" id="InputName" placeholder="Enter Username">
-                        <label for="InputEmail">Email address</label>
-                        <input type="email" class="form-control" id="InputEmail" aria-describedby="emailHelp"
-                            placeholder="Enter email">
-                        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
-                            else.</small>
-                        <label for="InputPassword">Password</label>
-                        <input type="password" class="form-control" id="InputPassword" placeholder="Password">
+        <!-- Button trigger modal -->
+        <button data-toggle="modal" data-target="#exampleModal" type="button" class="btn offset-md-3 profile">
+            <img>
+        </button>
+        <div class=" offset-md-1 details">
+            <div>
+                <h1 class="name">First Lastname</h1>
+                <label>Email:</label>
+                <input type="text" value="ting820831@gmail.com" class="input-xlarge">
 
-                        <div class="text-center">
-                            <button type="submit" class="btn btn-submit text-uppercase">Submit</button>
-                        </div>
-                </form>
+                <br>
+
+                <label>Password:</label>
+                <input type="text" value="123456" class="input-xlarge">
             </div>
         </div>
-
-        <div class="modal fade" id="uploadPic" tabindex="-1" role="dialog" aria-labelledby="uploadPicture"
-            aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <label for="picUrl">Profile Link</label>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-
-                        <input type="text" class="form-control" id="InputUrl" placeholder="Enter your link here.">
-
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Upload</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
     </div>
-</div>
