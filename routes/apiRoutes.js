@@ -82,6 +82,7 @@ module.exports = function(app) {
          db.Tasks.findAll({where: {user_id:userID} }).then(function(dbTasks){
             if(dbTasks){
               res.json(dbTasks);
+              console.log("iran");
             } else{
               res.json("no tasks found");
             }
@@ -105,6 +106,7 @@ module.exports = function(app) {
           task_status: req.body.status
         }).then(function(dbTasks) {
           res.json(dbTasks);
+          console.log("running create task")
           // eslint-disable-next-line no-console
           console.log(dbTasks);
         });

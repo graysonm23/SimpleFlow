@@ -27,7 +27,7 @@ $(".search-icon").on("click", function(e) {
       description: $(".searcharea")
         .val()
         .trim(),
-      status: "to-do",
+      status: "todo",
       id: ""
     };
     console.log("I've been clicked");
@@ -40,7 +40,7 @@ $(".search-icon").on("click", function(e) {
         data: task
       }).then(function(response) {
         task.id = response.task_id;
-        addCols(task);
+        addColsInit(task);
         console.log(task.id);
       });
     } else {
@@ -59,7 +59,7 @@ $("#close-textarea").on("click", function() {
   $(".search-icon").removeAttr("id");
   $(".textarea").hide("slow", "swing");
 });
-function addCols(task) {
+function addColsInit(task) {
   console.log(task);
   console.log("adding columns");
   var myCol = $(
