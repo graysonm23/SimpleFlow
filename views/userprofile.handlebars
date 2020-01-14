@@ -1,3 +1,6 @@
+<head>
+    <link rel="stylesheet" href="/styles/userprofile.css" media="screen" title="no title" charset="utf-8">
+</head>
 <div class="wrapper">
     <!-- Sidebar Holder -->
     <nav id="sidebar">
@@ -59,11 +62,19 @@
                     <span></span>
                     <span></span>
                 </button>
-                <h1 class="header">Dashboard</h1>
+                <h1 class="header">Profile</h1>
 
             </div>
         </nav>
         {{> profile }}
     </div>
 </div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#sidebarCollapse').on('click', function () {
+            $('#sidebar').toggleClass('active');
+            $(this).toggleClass('active');
+        });
+    });
+</script>
 <script src="js/profile.js"></script>
