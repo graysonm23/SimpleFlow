@@ -25,8 +25,8 @@ $.ajax({
   }
 });
 
-$("div").sortable({
-  connectWith: ".dragbox",
+$(".dragbox").sortable({
+  connectWith: ".drag-column",
   items: ".dynamicCard, .to-do-cont, .in-progress, .task-completed",
   dropOnEmpty: false,
   revert: true,
@@ -46,4 +46,5 @@ function addCols(taskObj) {
   myCol.appendTo(".to-do");
   $("#editTextTitle").click(divClickedTitle);
   $(".editTextP").click(divClickedP);
+  showhideImage();
 }

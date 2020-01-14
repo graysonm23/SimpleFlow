@@ -162,6 +162,7 @@ a.article:hover {
     CONTENT STYLE
 ----------------------------------------------------- */
 #content {
+  position: relative;
   width: 100%;
   padding: 20px;
   min-height: 100vh;
@@ -285,7 +286,7 @@ a.article:hover {
   transform: translate(0, 60px);
   transition: all 0.3s cubic-bezier(0, 0.105, 0.035, 1.57);
   transition-delay: 0.3s;
-  z-index: 999;
+  z-index: 900;
 }
 .search-wrapper.active .input-holder .search-input {
   opacity: 1;
@@ -312,10 +313,10 @@ a.article:hover {
   border-radius: 30px;
 }
 .search-icon {
-  z-index: 999;
+  z-index: 900;
 }
 #open {
-  z-index: 999;
+  z-index: 900;
 }
 .search-wrapper .input-holder .search-icon span {
   width: 22px;
@@ -394,6 +395,18 @@ a.article:hover {
   min-width: 33%;
 }
 
+#dashBgImage {
+  background: url(../images/inbox_none.png);
+  position: fixed;
+  background-size: cover;
+  background-position: center;
+  height: 600px;
+  width: 600px;
+  top: 50%;
+  left: 65%;
+  transform: translate(-65%, -50%);
+}
+
 #removeTask {
   color: #e67e42;
   border: none;
@@ -427,7 +440,7 @@ textarea {
   opacity: 1;
   transform: translate(0, 10px);
   height: 200px;
-  z-index: 999;
+  z-index: 900;
 }
 input,
 optgroup,
