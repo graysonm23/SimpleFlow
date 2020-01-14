@@ -387,6 +387,13 @@ a.article:hover {
   width: 100%;
 }
 
+.to-do-cont,
+.in-progress,
+.task-completed {
+  min-height: 500px;
+  min-width: 33%;
+}
+
 #removeTask {
   color: #e67e42;
   border: none;
