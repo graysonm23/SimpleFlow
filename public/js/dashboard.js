@@ -40,8 +40,10 @@ function addCols(taskObj) {
     `<div id="dynamicCard" class="dynamicCard" value="${taskObj.id}"></div>`
   );
   var myPanel = $(
-    `<div class="ui-state-default draggable" id="Panel"><div class="block"><div class="title"><span>${taskObj.name}</span><button type="button" class="closeCard" data-target="#Panel" data-dismiss="alert"><span class="float-right"><i id="removeTask" class="fas fa-user-minus"></i></span></button></div><p>${taskObj.description}</p></div></div>`
+    `<div class="ui-state-default draggable" id="Panel"><div class="block"><div class="title"><h5 class"editTextTitle"><span id='editTextTitle'>${taskObj.name}</span></h5><button type="button" class="closeCard" data-target="#Panel" data-dismiss="alert"><span class="float-right"><i id="removeTask" class="fas fa-user-minus"></i></span></button></div><p class="editTextP">${taskObj.description}</p></div></div>`
   );
   myPanel.appendTo(myCol);
   myCol.appendTo(".to-do");
+  $("#editTextTitle").click(divClickedTitle);
+  $(".editTextP").click(divClickedP);
 }

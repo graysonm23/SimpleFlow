@@ -66,10 +66,12 @@ function addCols(task) {
     `<div id="dynamicCard" class="dynamicCard" value="${task.id}"></div>`
   );
   var myPanel = $(
-    `<div class="ui-state-default draggable" id="Panel"><div class="block"><div class="title"><span>${task.name}</span><button type="button" class="closeCard" data-target="#Panel" data-dismiss="alert"><span class="float-right"><i id="removeTask" class="fas fa-user-minus"></i></span></button></div><p>${task.description}</p></div></div>`
+    `<div class="ui-state-default draggable" id="Panel"><div class="block"><div class="title"><h5 class"editTextTitle"><span id='editTextTitle'>${task.name}</span></h5><button type="button" class="closeCard" data-target="#Panel" data-dismiss="alert"><span class="float-right"><i id="removeTask" class="fas fa-user-minus"></i></span></button></div><p class="editTextP">${task.description}</p></div></div>`
   );
   myPanel.appendTo(myCol);
   myCol.appendTo(".to-do");
+  $("#editTextTitle").click(divClickedTitle);
+  $(".editTextP").click(divClickedP);
 }
 $(document).on("click", ".closeCard", function(e) {
   var cardValJQuery = $(this).parents()[3];
@@ -83,3 +85,43 @@ $(document).on("click", ".closeCard", function(e) {
     $target.remove();
   });
 });
+
+function divClickedTitle() {
+  var divHtml = $(this).html();
+  var editableText = $("<textarea />");
+  editableText.val(divHtml);
+  $(this).replaceWith(editableText);
+  editableText.focus();
+  // setup the blur event for this new textarea
+  editableText.blur(editableTextBlurredTitle);
+}
+
+function editableTextBlurredTitle() {
+  var html = $(this).val();
+  var viewableText = $("<h5 class='editTextTitle'>");
+  viewableText.html(html);
+  $(this).replaceWith(viewableText);
+  // setup the click event for this new div
+  viewableText.click(divClickedTitle);
+}
+
+function divClickedP() {
+  var divHtml = $(this).html();
+  var editableText = $("<textarea />");
+  editableText.val(divHtml);
+  $(this).replaceWith(editableText);
+  editableText.focus();
+  // setup the blur event for this new textarea
+  editableText.blur(editableTextBlurredP);
+}
+
+function editableTextBlurredP() {
+  var html = $(this).val();
+  var viewableText = $("<p class='editTextP'>");
+  viewableText.html(html);
+  $(this).replaceWith(viewableText);
+  // setup the click event for this new div
+  viewableText.click(divClickedP);
+}
+$("#editTextTitle").click(divClickedTitle);
+$(".editTextP").click(divClickedP);
