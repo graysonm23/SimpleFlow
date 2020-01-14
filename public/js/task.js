@@ -63,10 +63,10 @@ function addColsInit(task) {
   console.log(task);
   console.log("adding columns");
   var myCol = $(
-    `<div id="dynamicCard" class="dynamicCard" value="${task.id}"></div>`
+    `<div id="dynamicCard" class="closeCard dynamicCard" value="${task.id}"></div>`
   );
   var myPanel = $(
-    `<div class="ui-state-default draggable" id="Panel"><div class="block"><div class="title"><h5 class"editTextTitle"><span id='editTextTitle'>${task.name}</span></h5><button type="button" class="closeCard" data-target="#Panel" data-dismiss="alert"><span class="float-right"><i id="removeTask" class="fas fa-user-minus"></i></span></button></div><p class="editTextP">${task.description}</p></div></div>`
+    `<div class="ui-state-default draggable" id="Panel"><div class="block"><div class="title"><h5 class"editTextTitle"><span id='editTextTitle'>${task.name}</span></h5><button type="button" data-target="#Panel" data-dismiss="alert"><span class="float-right"><i id="removeTask" class="fas fa-user-minus"></i></span></button></div><p class="editTextP">${task.description}</p></div></div>`
   );
   myPanel.appendTo(myCol);
   myCol.appendTo(".to-do");
@@ -75,9 +75,10 @@ function addColsInit(task) {
   showhideImage();
 }
 $(document).on("click", ".closeCard", function(e) {
+  console.log($(this.parents()[3]));
   var cardValJQuery = $(this).parents()[3];
   var cardValJS = cardValJQuery.getAttribute("value");
-  var taskId = {
+  var task_id = {
     value: cardValJS
   };
   e.stopPropagation();
@@ -134,7 +135,9 @@ function showhideImage() {
     !$("#taskcompleted").children().length
   ) {
     $("#dashBgImage").show();
+    $(".bounce").show();
   } else {
     $("#dashBgImage").hide();
+    $(".bounce").hide();
   }
 }

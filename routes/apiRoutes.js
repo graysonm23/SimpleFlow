@@ -28,7 +28,6 @@ module.exports = function(app) {
           response
         ) {
           if (err) {
-
             var DOMAIN = process.env.DOMAIN;
             var mg = mailgun({ apiKey: process.env.API_KEY, domain: DOMAIN });
             var data = {
@@ -44,7 +43,7 @@ module.exports = function(app) {
             return res.json({
               success: false,
               message: "passwords do not match"
-            });          
+            });
           }
           if (response) {
             //if passwords match
@@ -55,8 +54,7 @@ module.exports = function(app) {
               process.env.SECRET_KEY,
               { expiresIn: "10 days" } /*sets token to expire in 30 seconds*/,
               function(err, token) {
-                res.json({token: token, message: "success"});
-
+                res.json({ token: token, message: "success" });
               }
             );
 
@@ -71,34 +69,34 @@ module.exports = function(app) {
     // eslint-disable-next-line no-undef
   });
 
-  app.post("/api/dashboard", parseToken, function(req, res){
+  app.post("/api/dashboard", parseToken, function(req, res) {
     console.log(req.token);
-    jwt.verify(req.token, process.env.SECRET_KEY, function(err, authData){
-      if(err){
-          res.status(403); //forbidden error
-          console.log(err);
-      } else{
-         var userID = authData.user;
-         db.Tasks.findAll({where: {user_id:userID} }).then(function(dbTasks){
-            if(dbTasks){
-              res.json(dbTasks);
-              console.log("iran");
-            } else{
-              res.json("no tasks found");
-            }
-         });
-
+    jwt.verify(req.token, process.env.SECRET_KEY, function(err, authData) {
+      if (err) {
+        res.status(403); //forbidden error
+        console.log(err);
+      } else {
+        var userID = authData.user;
+        db.Tasks.findAll({ where: { user_id: userID } }).then(function(
+          dbTasks
+        ) {
+          if (dbTasks) {
+            res.json(dbTasks);
+            console.log("iran");
+          } else {
+            res.json("no tasks found");
+          }
+        });
       }
+    });
   });
 
-  });
-
-  app.post("/api/createtask", parseToken, function(req, res){ 
-    jwt.verify(req.token, process.env.SECRET_KEY, function(err, authData){
-      if(err){
-          res.status(403); //forbidden error
-          console.log(err);
-      } else{
+  app.post("/api/createtask", parseToken, function(req, res) {
+    jwt.verify(req.token, process.env.SECRET_KEY, function(err, authData) {
+      if (err) {
+        res.status(403); //forbidden error
+        console.log(err);
+      } else {
         db.Tasks.create({
           user_id: authData.user,
           task_title: req.body.name,
@@ -106,39 +104,39 @@ module.exports = function(app) {
           task_status: req.body.status
         }).then(function(dbTasks) {
           res.json(dbTasks);
-          console.log("running create task")
+          console.log("running create task");
           // eslint-disable-next-line no-console
           console.log(dbTasks);
         });
       }
     });
-    
   });
 
-  app.post("/api/updatetaskstatus", function(req, res){
-    db.Tasks.update({task_status: req.body.divID},{where: {task_id: req.body.task_id} }).then(function(dbTasks){
-                if(dbTasks){
-                  res.json(dbTasks);
-                } else{
-                  res.json("no tasks found");
-                }
-             });
-
+  app.post("/api/updatetaskstatus", function(req, res) {
+    db.Tasks.update(
+      { task_status: req.body.divID },
+      { where: { task_id: req.body.task_id } }
+    ).then(function(dbTasks) {
+      if (dbTasks) {
+        res.json(dbTasks);
+      } else {
+        res.json("no tasks found");
+      }
+    });
   });
 
-  // app.post("/api/deletetask", function(req, res){
-  //   console.log(req.token);
-             
-  //     db.Tasks.destroy({where: {task_id:userID} }).then(function(dbTasks){
-  //           if(dbTasks){
-  //             res.json(dbTasks);
-  //           } else{
-  //             res.json("no tasks found");
-  //           }
-  //        });
-
-  // });
-
+  app.post("/api/deletetask", function(req, res) {
+    console.log(req.token);
+    db.Tasks.destroy({ where: { task_id: req.body.value } }).then(function(
+      dbTasks
+    ) {
+      if (dbTasks) {
+        res.json(dbTasks);
+      } else {
+        res.json("no tasks found");
+      }
+    });
+  });
 
   app.post("/signup", function(req, res) {
     var DOMAIN = process.env.DOMAIN;
@@ -309,14 +307,14 @@ module.exports = function(app) {
   });
 };
 function parseToken(request, response, next) {
-  console.log('hi')  //get auth header value
+  console.log("hi"); //get auth header value
   var bearerHeader = request.headers["authorization"];
-console.log(bearerHeader)
+  console.log(bearerHeader);
   //check if bearer is undefined
   if (typeof bearerHeader !== "undefined") {
     //split at the space
     var bearer = bearerHeader.split(" ");
-    console.log(bearer)
+    console.log(bearer);
     //get token from array
     var bearerToken = bearer[1];
     //set the token
@@ -325,7 +323,6 @@ console.log(bearerHeader)
     next();
   } else {
     //forbidden
-    response.json({message: "not logged in"});
+    response.json({ message: "not logged in" });
   }
-
 }
