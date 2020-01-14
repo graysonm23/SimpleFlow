@@ -32,20 +32,21 @@ $(".drag-column").sortable({
   dropOnEmpty: true,
   revert: true,
   forcePlaceholderSize: true,
-  update: function( event, ui ) {
-   var status = {divID: event.target.id, task_id: event.target.children[0].attributes[2].value};
-   console.log(status);
-   $.ajax({
-    url: "/api/updatetaskstatus",
-    method: "POST",
-    data: status
-  }).then(function(response) {
-    console.log(response);
-  });
-
+  update: function(event, ui) {
+    var status = {
+      divID: event.target.id,
+      task_id: event.target.children[0].attributes[2].value
+    };
+    console.log(status);
+    $.ajax({
+      url: "/api/updatetaskstatus",
+      method: "POST",
+      data: status
+    }).then(function(response) {
+      console.log(response);
+    });
   }
 });
-
 
 function addCols(taskObj) {
   console.log(taskObj);
