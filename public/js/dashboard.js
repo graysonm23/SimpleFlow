@@ -32,29 +32,30 @@ $(".drag-column").sortable({
   dropOnEmpty: true,
   revert: true,
   forcePlaceholderSize: true,
-  update: function( event, ui ) {
-   var status = {divID: event.target.id, task_id: event.target.children[0].attributes[2].value};
-   console.log(status);
-   $.ajax({
-    url: "/api/updatetaskstatus",
-    method: "POST",
-    data: status
-  }).then(function(response) {
-    console.log(response);
-  });
-
+  update: function(event, ui) {
+    var status = {
+      divID: event.target.id,
+      task_id: event.target.children[0].attributes[2].value
+    };
+    console.log(status);
+    $.ajax({
+      url: "/api/updatetaskstatus",
+      method: "POST",
+      data: status
+    }).then(function(response) {
+      console.log(response);
+    });
   }
 });
-
 
 function addCols(taskObj) {
   console.log(taskObj);
   console.log("adding columns");
   var myCol = $(
-    `<div id="dynamicCard" class="dynamicCard" value="${taskObj.id}"></div>`
+    `<div id="dynamicCard" class="closeCard dynamicCard" value="${taskObj.id}"></div>`
   );
   var myPanel = $(
-    `<div class="ui-state-default draggable" id="Panel"><div class="block"><div class="title"><h5 class"editTextTitle"><span id='editTextTitle'>${taskObj.name}</span></h5><button type="button" class="closeCard" data-target="#Panel" data-dismiss="alert"><span class="float-right"><i id="removeTask" class="fas fa-user-minus"></i></span></button></div><p class="editTextP">${taskObj.description}</p></div></div>`
+    `<div class="ui-state-default draggable" id="Panel"><div class="block"><div class="title"><h5 class"editTextTitle"><span id='editTextTitle'>${taskObj.name}</span></h5><button type="button" data-target="#Panel" data-dismiss="alert"><span class="float-right"><i id="removeTask" class="fas fa-user-minus"></i></span></button></div><p class="editTextP">${taskObj.description}</p></div></div>`
   );
   var div = `#${taskObj.status}`;
   myPanel.appendTo(myCol);
