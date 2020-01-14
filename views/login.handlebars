@@ -1,33 +1,9 @@
 <head>
-    <meta charset="utf-8">
-
-
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css">
     <link rel="stylesheet" href="/styles/login.css" media="screen" title="no title" charset="utf-8">
-    <link rel="stylesheet" href="/styles/task.css" media="screen" title="no title" charset="utf-8">
-    <link rel="stylesheet" href="/styles/userprofile.css" media="screen" title="no title" charset="utf-8">
-    <link href="https://fonts.googleapis.com/css?family=Ibarra+Real+Nova|Roboto&display=swap" rel="stylesheet">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
-    <!-- Scrollbar Custom CSS -->
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-        crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
-        crossorigin="anonymous"></script>
-    <script src="https://kit.fontawesome.com/7526ad2636.js" crossorigin="anonymous"></script>
-    <script
-        src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
-
-    <title>Home Page</title>
 </head>
 <div class="container-fluid">
-    <div class="row">
-        <div class="d-none d-md-flex col-md-4 col-lg-6 bg-image"></div>
+    <div class="row no-gutter">
+        <div class="d-none d-md-flex col-md-4 col-lg-6 bg-image" id="loginPageImage"></div>
         <div class="col-md-8 col-lg-6">
             <div id="login" class="login d-flex align-items-center py-5">
                 <div class="container">
@@ -43,7 +19,7 @@
                                     <label for="inputEmail">Email address</label>
                                 </div>
 
-                                <div class="form-label-group">
+                                <div id="form-label-group" class="form-label-group">
                                     <input type="password" id="inputPassword" class="form-control"
                                         placeholder="Password" required>
                                     <label for="inputPassword">Password</label>
@@ -53,12 +29,12 @@
                                     <input type="checkbox" class="custom-control-input" id="customCheck1">
                                     <label class="custom-control-label" for="customCheck1">Remember password</label>
                                 </div>
-                                <button
+                                <button id="btn-login"
                                     class="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2"
                                     type="submit">Sign in</button>
                                 <div class="text-center">
-                                    <a class="small" href="/signup">Click Here to Sign Up!</a><br>
-                                    <a class="small" href="/forgot">Click Here to Reset Password!</a>
+                                    <a id="small" class="small" href="/signup">Click Here to Sign Up!</a><br>
+                                    <a id="small" class="small" href="/forgot">Click Here to Reset Password!</a>
                                 </div>
 
                             </form>
@@ -69,5 +45,5 @@
         </div>
     </div>
 </div>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+{{!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> --}}
 <script src="js/login.js"></script>

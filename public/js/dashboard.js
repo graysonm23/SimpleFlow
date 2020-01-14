@@ -1,56 +1,49 @@
+// import { TableHints } from "sequelize/types";
+
 var token = window.localStorage.getItem("Authorization");
 
 var jwtToken = "Bearer " + token;
-console.log(token);
-if(!token){
+console.log(token); //commented out jwt logic temporarily due to login page css messed up
+if (!token) {
   window.location.pathname = "/login"; //if no token redirect to login
 }
 
 $.ajax({
   url: "/api/dashboard",
   method: "POST",
-  headers: {authorization: jwtToken}
+  headers: { authorization: jwtToken }
 }).then(function(response) {
-
-  console.log(response);
+  var task = response;
+  console.log(task);
+  for (var i = 0; i < task.length; i++) {
+    var taskObj = {
+      name: task[i].task_title,
+      description: task[i].task_text,
+      id: task[i].task_id
+    };
+    addCols(taskObj);
+  }
 });
 
-$(".dragbox ul").sortable({
-  connectWith: "ul",
-  items: "li:not(.drag-disabled)",
-  dropOnEmpty: false
+$("div").sortable({
+  connectWith: ".dragbox",
+  items: ".dynamicCard, .to-do-cont, .in-progress, .task-completed",
+  dropOnEmpty: false,
+  revert: true,
+  forcePlaceholderSize: true
 });
 
-// $(".clickme").on("click", function(event){
-//   event.preventDefault();
-//   alert("I'm clickable!")
-// });
-
-$(function(){
-  $('.clickme').popover({
-     
-      placement: 'bottom',
-      title: 'Enter a Task',
-      sanitize: false,
-      html:true,
-      content:  `
-      <div id="pops">
-        <div>
-            <label for="Task">Task:</label>
-            <input type="text" name="task" id="pop-task" class="form-control input-md">
-            <button type="button" id="pop-button" class="btn btn-primary" data-loading-text="Sending info.."><em class="icon-ok"></em> Save</button>
-        </div>
-    </div>
-      `
-  }).on('click', function(){
-    // had to put it within the on click action so it grabs the correct info on submit
-    $(this).addClass("selected");
-    console.log($(this));
-    $('#pop-button').click(function(){
-        var newTask = $("#pop-task").val().trim();
-        $(".selected").text(newTask);
-        $("li").removeClass("selected");
-        $('.clickme').popover('hide');
-    });
-})
-})
+function addCols(taskObj) {
+  console.log(taskObj);
+  console.log("adding columns");
+  var myCol = $(
+    `<div id="dynamicCard" class="dynamicCard" value="${taskObj.id}"></div>`
+  );
+  var myPanel = $(
+    `<div class="ui-state-default draggable" id="Panel"><div class="block"><div class="title"><h5 class"editTextTitle"><span id='editTextTitle'>${taskObj.name}</span></h5><button type="button" class="closeCard" data-target="#Panel" data-dismiss="alert"><span class="float-right"><i id="removeTask" class="fas fa-user-minus"></i></span></button></div><p class="editTextP">${taskObj.description}</p></div></div>`
+  );
+  myPanel.appendTo(myCol);
+  myCol.appendTo(".to-do");
+  $("#editTextTitle").click(divClickedTitle);
+  $(".editTextP").click(divClickedP);
+}

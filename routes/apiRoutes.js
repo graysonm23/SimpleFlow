@@ -78,25 +78,41 @@ module.exports = function(app) {
           res.status(403); //forbidden error
           console.log(err);
       } else{
-          res.json({
-              message: 'post created...',
-              authData: authData
-          });
-          console.log(authData);
-          // db.Tasks.create({
-          //   user_id: authData,
-          //   email: req.body.email,
-          //   password: hash
-          // }).then(function(dbUsers) {
-          //   res.json({ status: "success" });
-          //   // eslint-disable-next-line no-console
-          //   console.log(dbUsers);
-          // });
+         var userID = authData.user;
+         db.Tasks.findAll({where: {user_id:userID} }).then(function(dbTasks){
+            if(dbTasks){
+              res.json(dbTasks);
+            } else{
+              res.json("no tasks found");
+            }
+         });
 
       }
   });
 
   });
+
+  app.post("/api/createtask", parseToken, function(req, res){ 
+    jwt.verify(req.token, process.env.SECRET_KEY, function(err, authData){
+      if(err){
+          res.status(403); //forbidden error
+          console.log(err);
+      } else{
+        db.Tasks.create({
+          user_id: authData.user,
+          task_title: req.body.name,
+          task_text: req.body.description,
+          task_status: req.body.status
+        }).then(function(dbTasks) {
+          res.json(dbTasks);
+          // eslint-disable-next-line no-console
+          console.log(dbTasks);
+        });
+      }
+    });
+    
+  });
+
 
   app.post("/signup", function(req, res) {
     var DOMAIN = process.env.DOMAIN;

@@ -1,3 +1,6 @@
+<head>
+  <link rel="stylesheet" href="/styles/task.css" media="screen" title="no title" charset="utf-8">
+</head>
 <div class="wrapper">
   <!-- Sidebar Holder -->
   <nav id="sidebar">
@@ -67,11 +70,28 @@
       </div>
     </nav>
 
-    <div class="taskDiv">
+    <div class="container-fluid">
+      <h1 class="projectHeader">Tasks</h1>
       {{> task }}
-      {{!-- <div class="line"></div> --}}
-
+      <div class="row dragbox">
+        <div class="col-sm to-do-cont">
+          <h2>To Do:</h2>
+          <div class="row drag-row to-do drag-column"></div>
+        </div>
+        <div class="col-sm in-progress-cont">
+          <h2>In Progress:</h2>
+          <div class="row drag-row in-progress drag-column"></div>
+        </div>
+        <div class="col-sm task-completed-cont">
+          <h2>Completed:</h2>
+          <div class="row drag-row task-completed drag-column">
+          </div>
+        </div>
+      </div>
     </div>
+    {{!-- <div class="line"></div> --}}
+
+
 
   </div>
 </div>
@@ -85,4 +105,8 @@
   });
 </script>
 
-<script src="/js/task.js"></script>
+<<<<<<< HEAD <script src="/js/task.js">
+</script>
+=======
+<script src="/js/dashboard.js"></script>
+>>>>>>> 77022b49147bb12da10d431067f5e545a788961d
