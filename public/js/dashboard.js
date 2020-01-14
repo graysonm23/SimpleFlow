@@ -27,7 +27,7 @@ $.ajax({
 
 $("div").sortable({
   connectWith: ".dragbox",
-  items: ".dynamicCard",
+  items: ".dynamicCard, .to-do-cont, .in-progress, .task-completed",
   dropOnEmpty: false,
   revert: true,
   forcePlaceholderSize: true
