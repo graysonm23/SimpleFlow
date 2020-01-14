@@ -285,6 +285,7 @@ a.article:hover {
   transform: translate(0, 60px);
   transition: all 0.3s cubic-bezier(0, 0.105, 0.035, 1.57);
   transition-delay: 0.3s;
+  z-index: 999;
 }
 .search-wrapper.active .input-holder .search-input {
   opacity: 1;
@@ -309,6 +310,12 @@ a.article:hover {
   height: 30px;
   margin: 10px;
   border-radius: 30px;
+}
+.search-icon {
+  z-index: 999;
+}
+#open {
+  z-index: 999;
 }
 .search-wrapper .input-holder .search-icon span {
   width: 22px;
@@ -375,6 +382,30 @@ a.article:hover {
   }
 }
 
+#dynamicCard {
+  position: relative;
+  width: 100%;
+}
+
+#removeTask {
+  color: #e67e42;
+  border: none;
+  background: none;
+  font-size: 20px;
+}
+
+.closeCard {
+  border: none;
+  background: none;
+  overflow: visible;
+}
+
+.closeCard {
+  position: absolute;
+  top: 0;
+  right: 20px;
+}
+
 /*------------------------------------*/
 /*---------------TextArea-------------*/
 textarea {
@@ -389,6 +420,7 @@ textarea {
   opacity: 1;
   transform: translate(0, 10px);
   height: 200px;
+  z-index: 999;
 }
 input,
 optgroup,
@@ -407,7 +439,5 @@ textarea {
 }
 
 .searcharea {
-  display:none;
+  display: none;
 }
-
-

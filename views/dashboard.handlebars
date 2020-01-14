@@ -1,3 +1,6 @@
+<head>
+  <link rel="stylesheet" href="/styles/task.css" media="screen" title="no title" charset="utf-8">
+</head>
 <div class="wrapper">
   <!-- Sidebar Holder -->
   <nav id="sidebar">
@@ -63,29 +66,29 @@
           <span></span>
           <span></span>
         </button>
-        {{> task }}
         <h1 class="header">Dashboard</h1>
       </div>
     </nav>
 
-<div class="container-fluid">
-    <h1 class="projectHeader">Tasks</h1>
-    <div class="row dragbox">
+    <div class="container-fluid">
+      <h1 class="projectHeader">Tasks</h1>
+      {{> task }}
+      <div class="row dragbox">
         <div class="col-sm to-do-cont">
-        <h2>To Do:</h2>
-        <div class="row drag-row to-do drag-column"></div>
+          <h2>To Do:</h2>
+          <div id="Parent" class="row drag-row to-do drag-column"></div>
         </div>
         <div class="col-sm in-progress-cont">
-        <h2>In Progress:</h2>
-        <div class="row drag-row in-progress drag-column"></div>
+          <h2>In Progress:</h2>
+          <div class="row drag-row in-progress drag-column"></div>
         </div>
         <div class="col-sm task-completed-cont">
-        <h2>Completed:</h2>
-        <div class="row drag-row task-completed drag-column">
+          <h2>Completed:</h2>
+          <div class="row drag-row task-completed drag-column">
+          </div>
         </div>
+      </div>
     </div>
-</div>
-</div>
     {{!-- <div class="line"></div> --}}
 
 
