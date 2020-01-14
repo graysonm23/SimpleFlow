@@ -72,6 +72,7 @@ function addCols(task) {
   myCol.appendTo(".to-do");
   $("#editTextTitle").click(divClickedTitle);
   $(".editTextP").click(divClickedP);
+  showhideImage();
 }
 $(document).on("click", ".closeCard", function(e) {
   var cardValJQuery = $(this).parents()[3];
@@ -125,3 +126,15 @@ function editableTextBlurredP() {
 }
 $("#editTextTitle").click(divClickedTitle);
 $(".editTextP").click(divClickedP);
+
+function showhideImage() {
+  if (
+    !$("#todo").children().length &&
+    !$("#inprogress").children().length &&
+    !$("#taskcompleted").children().length
+  ) {
+    $("#dashBgImage").show();
+  } else {
+    $("#dashBgImage").hide();
+  }
+}

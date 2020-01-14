@@ -19,19 +19,33 @@ $.ajax({
     var taskObj = {
       name: task[i].task_title,
       description: task[i].task_text,
-      id: task[i].task_id
+      id: task[i].task_id,
+      status: task[i].task_status
     };
     addCols(taskObj);
   }
 });
 
-$("div").sortable({
-  connectWith: ".dragbox",
+$(".drag-column").sortable({
+  connectWith: ".drag-column",
   items: ".dynamicCard, .to-do-cont, .in-progress, .task-completed",
-  dropOnEmpty: false,
+  dropOnEmpty: true,
   revert: true,
-  forcePlaceholderSize: true
+  forcePlaceholderSize: true,
+  update: function( event, ui ) {
+   var status = {divID: event.target.id, task_id: event.target.children[0].attributes[2].value};
+   console.log(status);
+   $.ajax({
+    url: "/api/updatetaskstatus",
+    method: "POST",
+    data: status
+  }).then(function(response) {
+    console.log(response);
+  });
+
+  }
 });
+
 
 function addCols(taskObj) {
   console.log(taskObj);
@@ -42,8 +56,10 @@ function addCols(taskObj) {
   var myPanel = $(
     `<div class="ui-state-default draggable" id="Panel"><div class="block"><div class="title"><h5 class"editTextTitle"><span id='editTextTitle'>${taskObj.name}</span></h5><button type="button" class="closeCard" data-target="#Panel" data-dismiss="alert"><span class="float-right"><i id="removeTask" class="fas fa-user-minus"></i></span></button></div><p class="editTextP">${taskObj.description}</p></div></div>`
   );
+  var div = `#${taskObj.status}`;
   myPanel.appendTo(myCol);
-  myCol.appendTo(".to-do");
+  myCol.appendTo(div);
   $("#editTextTitle").click(divClickedTitle);
   $(".editTextP").click(divClickedP);
+  showhideImage();
 }
