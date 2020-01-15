@@ -37,6 +37,22 @@ Object.keys(db).forEach(function(modelName) {
   }
 });
 
+var mysql = require("mysql");
+
+if (process.env.JAWSDB_URL) {
+  // Database is JawsDB on Heroku
+  connection = mysql.createConnection(process.env.JAWSDB_URL);
+} else {
+  // Database is local
+  connection = mysql.createConnection({
+    port: 3306,
+    host: "localhost",
+    user: "root",
+    password: "",
+    database: "simpleflow_dev"
+  });
+}
+
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
