@@ -1,6 +1,9 @@
+<head>
+    <link rel="stylesheet" href="/styles/forgot.css" media="screen" title="no title" charset="utf-8">
+</head>
 <div class="container-fluid">
     <div class="row no-gutter">
-        <div class="d-none d-md-flex col-md-4 col-lg-6 bg-image"></div>
+        <div class="d-none d-md-flex col-md-4 col-lg-6 bg-image" id="loginPageImage"></div>
         <div class="col-md-8 col-lg-6">
             <div class="login d-flex align-items-center py-5">
                 <div class="container">
@@ -11,9 +14,9 @@
                             <div style="margin-bottom: 20px;" class="resetMsg"></div>
                             <form method="POST" action="forgot" autocomplete="on">
                                 <div class="form-label-group">
+                                    <label for="inputEmail">Email address</label>
                                     <input type="email" id="inputReset" class="form-control" placeholder="Email address"
                                         required autofocus="autofocus">
-                                    <label for="inputEmail">Email address</label>
                                 </div>
                                 <button
                                     class="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2"
