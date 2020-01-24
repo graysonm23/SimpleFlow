@@ -1,4 +1,3 @@
-var util = require("util");
 require("dotenv").config();
 var express = require("express");
 var exphbs = require("express-handlebars");
@@ -33,10 +32,6 @@ function parseToken(request, response, next) {
   //get auth header value
   var bearerHeader = request.headers["authorization"];
   console.log("This is bearer header ", bearerHeader);
-
-  // console.log(util.inspect(request));
-  // console.log("Header " + util.inspect(request.headers));
-  // console.log("This is your request object " + util.inspect(request));
 
   //check if bearer is undefined
   if (typeof bearerHeader !== "undefined") {
