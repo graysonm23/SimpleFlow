@@ -7,10 +7,11 @@ var basename = path.basename(module.filename);
 var env = process.env.NODE_ENV || "development";
 var config = require(__dirname + "/../config/config.js")[env];
 var db = {};
-
+// eslint-disable
 if (config.use_env_variable) {
   var sequelize = new Sequelize(process.env[config.use_env_variable]);
 } else {
+  // eslint-disable-next-line no-unused-vars
   var sequelize = new Sequelize(
     config.database,
     config.username,
@@ -18,7 +19,7 @@ if (config.use_env_variable) {
     config
   );
 }
-
+// eslint-enable
 fs.readdirSync(__dirname)
   .filter(function(file) {
     return (
