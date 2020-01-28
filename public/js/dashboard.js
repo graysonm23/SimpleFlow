@@ -60,7 +60,10 @@ function addCols(taskObj) {
   var div = `#${taskObj.status}`;
   myPanel.appendTo(myCol);
   myCol.appendTo(div);
+  // eslint-disable-next-line no-unused-vars
   $("#editTextTitle").click(divClickedTitle);
+  // eslint-disable-next-line no-unused-vars
   $(".editTextP").click(divClickedP);
+  // eslint-disable-next-line no-unused-vars
   showhideImage();
 }
