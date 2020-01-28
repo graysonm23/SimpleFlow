@@ -48,7 +48,7 @@ $(".drag-column").sortable({
     });
   }
 });
-// eslint-disable
+/* eslint-disable */
 function addCols(taskObj) {
   console.log(taskObj);
   console.log("adding columns");
@@ -65,4 +65,4 @@ function addCols(taskObj) {
   $(".editTextP").click(divClickedP);
   showhideImage();
 }
-// eslint-enable
+/* eslint-enable */
