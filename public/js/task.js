@@ -78,6 +78,7 @@ $(document).on("click", ".closeCard", function(e) {
   console.log($(this.parents()[3]));
   var cardValJQuery = $(this).parents()[3];
   var cardValJS = cardValJQuery.getAttribute("value");
+  // eslint-disable-next-line no-unused-vars
   var task_id = {
     value: cardValJS
   };
