@@ -32,7 +32,8 @@ $(".drag-column").sortable({
   dropOnEmpty: true,
   revert: true,
   forcePlaceholderSize: true,
-  update: function(event, ui) {
+  // eslint-disable-next-line no-unused-vars
+  update: function(event) {
     var status = {
       divID: event.target.id,
       task_id: event.target.children[0].attributes[2].value
@@ -47,7 +48,7 @@ $(".drag-column").sortable({
     });
   }
 });
-
+// eslint-disable
 function addCols(taskObj) {
   console.log(taskObj);
   console.log("adding columns");
@@ -60,10 +61,8 @@ function addCols(taskObj) {
   var div = `#${taskObj.status}`;
   myPanel.appendTo(myCol);
   myCol.appendTo(div);
-  // eslint-disable-next-line no-unused-vars
   $("#editTextTitle").click(divClickedTitle);
-  // eslint-disable-next-line no-unused-vars
   $(".editTextP").click(divClickedP);
-  // eslint-disable-next-line no-unused-vars
   showhideImage();
 }
+// eslint-enable
