@@ -1,19 +1,17 @@
 module.exports = function(app) {
   // Load index page
   app.get("/", function(req, res) {
-    // db.Users.findAll({}).then(function(dbExamples) {
-
     res.render("login");
-    // console.log(dbExamples);
-    // });
   });
 
   app.get("/profile", function(req, res) {
     res.render("userprofile");
   });
+
   app.get("/dashboard", function(req, res) {
     res.render("dashboard");
   });
+
   //Render login page
   app.get("/login", function(req, res) {
     res.render("login");
