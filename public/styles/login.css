@@ -18,6 +18,10 @@
   font-weight: 300;
 }
 
+.errMsg {
+  margin-bottom: 20px;
+}
+
 .btn-login {
   font-size: 0.9rem;
   letter-spacing: 0.05rem;

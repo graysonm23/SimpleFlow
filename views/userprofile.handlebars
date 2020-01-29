@@ -1,0 +1,69 @@
+<div class="wrapper">
+    <!-- Sidebar Holder -->
+    <nav id="sidebar">
+        <div class="sidebar-header">
+            <img src="images/logo.png" alt="SimpleFlow logo">
+        </div>
+
+        <ul style="text-align: center;" class="list-unstyled components">
+            <p>Welcome!</p>
+            <li class="active">
+                <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Home</a>
+                <ul class="collapse list-unstyled" id="homeSubmenu">
+                    <li>
+                        <a href="/profile">Profile</a>
+                    </li>
+                    <li>
+                        <a href="/inbox">Inbox</a>
+                    </li>
+                    <li>
+                        <a href="/notifications">Notifications</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Account</a>
+                <ul class="collapse list-unstyled" id="pageSubmenu">
+                    <li>
+                        <a href="/forgot">Reset Password</a>
+                    </li>
+                    <li>
+                        <a href="/login">Login</a>
+                    </li>
+                    <li>
+                        <a href="/signup">Sign Up!</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="/dashboard">Dashboard</a>
+            </li>
+
+        </ul>
+
+        <ul class="list-unstyled CTAs">
+            <li>
+                <a href="https://github.com/graysonm23/SimpleFlow" class="github">Open Source Project</a>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Page Content Holder -->
+    <div id="content">
+
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+
+                <button type="button" id="sidebarCollapse" class="navbar-btn">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <h1 class="header">Dashboard</h1>
+
+            </div>
+        </nav>
+        {{> profile }}
+    </div>
+</div>
+<script src="js/profile.js"></script>

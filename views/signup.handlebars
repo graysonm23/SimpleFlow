@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="public/styles/signup.css">
+<link rel="stylesheet" href="/styles/signup.css">
 <div class="container-fluid">
     <div class="row no-gutter">
         <div class="d-none d-md-flex col-md-4 col-lg-6 bg-image"></div>
@@ -8,11 +8,17 @@
                     <div class="row">
                         <div class="col-md-9 col-lg-8 mx-auto">
                             <h3 class="login-heading mb-4">Sign up really quick!</h3>
-                            <div class="msg"></div>
-                            <form method="POST" action="create/user">
+                            <div style="margin-bottom: 20px;" class="msg"></div>
+                            <form method="POST" action="signup" autocomplete="on">
+                                <div class="form-label-group">
+                                    <input type="text" id="inputName" name="name" class="form-control"
+                                        placeholder="First and Last Name" required autofocus="autofocus">
+                                    <label for="inputName">First and Last Name</label>
+                                </div>
+
                                 <div class="form-label-group">
                                     <input type="email" id="inputEmail" name="email" class="form-control"
-                                        placeholder="Email address" required autofocus>
+                                        placeholder="Email address" required>
                                     <label for="inputEmail">Email address</label>
                                 </div>
 
@@ -28,9 +34,11 @@
                                 </div>
                                 <button
                                     class="btn btn-lg btn-primary btn-block btn-signup text-uppercase font-weight-bold mb-2"
-                                    type="submit">Sign up</button>
+                                    type="submit">Sign
+                                    in</button>
                                 <div class="text-center">
-                                    <a class="small" href="#">Already have account? Sign in!</a></div>
+                                    <a class="small" href="/login">Already have account? Sign in!</a>
+                                </div>
                             </form>
                         </div>
                     </div>

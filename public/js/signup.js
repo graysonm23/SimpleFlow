@@ -1,30 +1,11 @@
-$(".btn-login").on("click", function(event) {
-  event.preventDefault();
-  // eslint-disable-next-line no-console
-  console.log("login has been clicked");
-  var user = {
-    email: $("#inputEmail")
-      .val()
-      .trim(),
-    password: $("#inputPassword")
-      .val()
-      .trim()
-  };
-  console.log(user.email, user.password);
-  $.ajax({
-    url: "/login/user",
-    method: "POST",
-    data: user
-  }).then(function(response) {
-    // eslint-disable-next-line no-console
-    console.log(response);
-  });
-});
+var signupResponseStatus;
 $(".btn-signup").on("click", function(event) {
   event.preventDefault();
   // eslint-disable-next-line no-console
-  console.log("signup has been clicked");
   var user = {
+    name: $("#inputName")
+      .val()
+      .trim(),
     email: $("#inputEmail")
       .val()
       .trim(),
@@ -32,16 +13,27 @@ $(".btn-signup").on("click", function(event) {
       .val()
       .trim()
   };
+  if (user.name === "" || user.email === "" || user.password === "") {
+    $(".msg").addClass("alert-primary");
+    $(".msg").html("Please fill out all fields!");
+    return false;
+  }
   // console.log(user);
   $.ajax({
-    url: "/create/user",
+    url: "/signup",
     method: "POST",
     data: user
   }).then(function(response) {
     // eslint-disable-next-line no-console
+    signupResponseStatus = response.status;
     console.log(response);
-    if (response.status === "success") {
-      $(".msg").text("Validation Email has been sent!");
-    }
+    validationMsg();
   });
 });
+
+function validationMsg() {
+  if (signupResponseStatus === "success") {
+    $(".msg").addClass("alert-success");
+    $(".msg").html("Validation Email has been sent!");
+  }
+}
