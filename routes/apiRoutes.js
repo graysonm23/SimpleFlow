@@ -1,11 +1,6 @@
 var db = require("../models");
 var bcrypt = require("bcryptjs");
-// eslint-disable-next-line no-unused-vars
-var nodemailer = require("nodemailer");
-// eslint-disable-next-line no-unused-vars
-var mailGun = require("nodemailer-mailgun-transport");
 var jwt = require("jsonwebtoken");
-
 var mailgun = require("mailgun-js");
 var saltRounds = 10;
 var crypto = require("crypto");
@@ -28,8 +23,10 @@ module.exports = function(app) {
           response
         ) {
           if (err) {
-            var DOMAIN = process.env.DOMAIN;
-            var mg = mailgun({ apiKey: process.env.API_KEY, domain: DOMAIN });
+            var mg = mailgun({
+              apiKey: process.env.MAILGUN_API_KEY,
+              domain: process.env.MAILGUN_DOMAIN
+            });
             var data = {
               from: "SimpleFlow <simpleflow2020@gmail.com>",
               to: req.body.email,
@@ -139,8 +136,10 @@ module.exports = function(app) {
   });
 
   app.post("/signup", function(req, res) {
-    var DOMAIN = process.env.DOMAIN;
-    var mg = mailgun({ apiKey: process.env.API_KEY, domain: DOMAIN });
+    var mg = mailgun({
+      apiKey: process.env.MAILGUN_API_KEY,
+      domain: process.env.MAILGUN_DOMAIN
+    });
     var data = {
       from: "SimpleFlow <simpleflow2020@gmail.com>",
       to: req.body.email,
@@ -200,8 +199,10 @@ module.exports = function(app) {
             if (dbresponse[1] === 1) {
               console.log("This is req headers" + req.headers.host);
               console.log("Successfully updated token in database");
-              var DOMAIN = process.env.DOMAIN;
-              var mg = mailgun({ apiKey: process.env.API_KEY, domain: DOMAIN });
+              var mg = mailgun({
+                apiKey: process.env.MAILGUN_API_KEY,
+                domain: process.env.MAILGUN_DOMAIN
+              });
               var data = {
                 from: "SimpleFlow <simpleflow2020@gmail.com>",
                 to: req.body.email,
