@@ -42,7 +42,6 @@ $(".search-icon").on("click", function(e) {
         task.id = response.task_id;
         addColsInit(task);
         console.log(task.id);
-        console.log(response);
       });
     } else {
       return false;
