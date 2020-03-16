@@ -5,7 +5,7 @@ var mailgun = require("mailgun-js");
 var saltRounds = 10;
 var crypto = require("crypto");
 require("dotenv").config();
-
+//Everything ready
 module.exports = function(app) {
   app.post("/login", function(req, res) {
     console.log(req.body);
