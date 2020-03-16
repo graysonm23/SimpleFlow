@@ -5,20 +5,22 @@ var path = require("path");
 var Sequelize = require("sequelize");
 var basename = path.basename(module.filename);
 var env = process.env.NODE_ENV || "development";
-var config = require(__dirname + "/../config/config.json")[env];
+var config = require(__dirname + "/../config/config.js")[env];
 var db = {};
 
+/* eslint-disable */
 if (config.use_env_variable) {
   var sequelize = new Sequelize(process.env[config.use_env_variable]);
 } else {
-  sequelize = new Sequelize(
+  // eslint-disable-next-line no-unused-vars
+  var sequelize = new Sequelize(
     config.database,
     config.username,
     config.password,
     config
   );
 }
-
+/* eslint-enable */
 fs.readdirSync(__dirname)
   .filter(function(file) {
     return (

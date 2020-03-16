@@ -1,0 +1,45 @@
+.profile img {
+  width: 30vh;
+  height: 30vh;
+  background-color: rgb(128, 74, 255);
+  border: none;
+  border-radius: 80vh;
+  margin-top: 10vh;
+}
+
+h5 {
+  text-align: left;
+  float: left;
+}
+
+label,
+input {
+  color: rgb(46, 46, 46);
+  margin-right: 5vh;
+  width: 40vh;
+  height: 8vh;
+}
+
+input {
+  border-radius: 6vh;
+  border: 1px solid rgb(255, 140, 74);
+  padding-left: 10px;
+}
+
+.email,
+.password {
+  color: rgb(255, 140, 74);
+}
+
+.details {
+  margin-top: 16vh;
+}
+
+button {
+  border: none;
+  background-color: transparent;
+}
+
+.modal-backdrop {
+  z-index: -1;
+}

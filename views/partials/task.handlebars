@@ -1,0 +1,12 @@
+<div class="search-wrapper">
+    <div class="arrow bounce"></div>
+    <div class="input-holder">
+        <input type="text" class="search-input" placeholder="Task name..." />
+        <button class="search-icon" onclick="searchToggle(this, event);"><span><i
+                    class="fas fa-plus fa-lg"></i></span></button>
+    </div>
+    <div class="textarea"><textarea class="searcharea" placeholder="Task description..."></textarea></div>
+    {{!-- <button id="save-task">Save</button> --}}
+    <span id="close-textarea" class="close" onclick="searchToggle(this, event);"></span>
+</div>
+<script src="../js/task.js"></script>

@@ -1,6 +1,11 @@
 module.exports = function(sequelize, DataTypes) {
-  var Users = sequelize.define("Users", {
+  var Tasks = sequelize.define("Tasks", {
     user_id: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      defaultValue: ""
+    },
+    task_id: {
       type: DataTypes.STRING,
       allowNull: false,
       defaultValue: function(id) {
@@ -15,39 +20,21 @@ module.exports = function(sequelize, DataTypes) {
         return id; //returns user_id value
       }
     },
-    name: {
+    task_title: {
       type: DataTypes.STRING,
       allowNull: false,
-      defaultValue: "null first and last"
+      defaultValue: "Enter a Task"
     },
-    email: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
-    password: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
-    profile_image: {
+    task_text: {
       type: DataTypes.STRING,
       allowNull: false,
-      defaultValue: "https://image.flaticon.com/icons/png/512/1177/1177568.png"
+      defaultValue: "Enter a Task"
     },
-    token: {
+    task_status: {
       type: DataTypes.STRING,
       allowNull: false,
-      defaultValue: " "
-    },
-    resetPasswordToken: {
-      type: DataTypes.STRING,
-      allowNull: true,
-      defaultValue: " "
-    },
-    resetPasswordExpires: {
-      type: DataTypes.STRING,
-      allowNull: true,
-      defaultValue: " "
+      defaultValue: ""
     }
   });
-  return Users;
+  return Tasks;
 };
